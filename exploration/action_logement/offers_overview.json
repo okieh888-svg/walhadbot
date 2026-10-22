@@ -1,0 +1,1447 @@
+{
+ "code": "DEM31",
+ "currentPage": 0,
+ "currentSize": 20,
+ "data": [
+  {
+   "id": 52665,
+   "guid": "62672dca-a3d1-4a46-b243-6bf42b132d51",
+   "reference": "52665",
+   "residency": {
+    "id": 8556,
+    "guid": "00d7e971-6e6d-4a39-9146-83501d4f566b",
+    "reference": "8556",
+    "name": "HIGH PARK 2",
+    "type": {
+     "id": 15,
+     "ordering": 1,
+     "code": "SOC",
+     "label": "Logement familial",
+     "product": {
+      "id": 2,
+      "guid": "712f4424-7590-4912-8ed8-f192b26557f8",
+      "ordering": 2,
+      "code": "PERN",
+      "label": "Patrimoine Pérenne"
+     }
+    }
+   },
+   "lodging": {
+    "id": 60201,
+    "guid": "04dcd4e5-67ef-4f64-9235-26f97787802f",
+    "reference": "60201",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": {
+     "id": 2,
+     "ordering": 1,
+     "code": "A",
+     "label": "Appartement"
+    },
+    "lodgingTypology": {
+     "id": 3,
+     "ordering": 2,
+     "code": "T1",
+     "label": "T1",
+     "commercialLabel": "T1"
+    },
+    "area": 32.0,
+    "municipality": {
+     "id": 34965,
+     "postcode": "92600",
+     "code": "92004",
+     "name": "Asnières-sur-Seine"
+    },
+    "description": "SANS HONORAIRES. Devenez locataire de cet appartement T1 de 32 m² au 1e étage, découvrez un spacieux salon, avec sa cuisine équipée(frigo, plaque de cuisson). le logement est lumineux sans vis à vis . Le logement est équipé de fenêtres double vitrage et du chauffage collectif. vous êtes à 1 min à pied du RER des Grésillons La location comprend une place de stationnement. Le lot est à louer pour 959 € CC. toutes charges comprises sauf l'électricité https://view.ricoh360.com/414d5f76-dde8-4aa9-9d78-036f3a527471?type=compact Référence à rappeler lors de nos échanges : 0112 - 001707 Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques : www.georisques.gouv.fr Logement Locatif Interm."
+   },
+   "availableAt": "2026-10-29",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 951.28,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-22",
+   "description": "A Asnières-sur-Seine (Avenue des Grésillons), découvrez cet appartement T1 de 32 m², lumineux et sans vis-à-vis, situé au 1er étage, doté d’un spacieux salon, d’une cuisine équipée (réfrigérateur, plaque de cuisson), de fenêtres double vitrage et du chauffage collectif. Vous êtes à 1 min à pied du RER C « Les Grésillons ». \nLa location comprend une place de stationnement. \n",
+   "isRecent": false,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 10507,
+   "guid": "ad948612-7637-4d98-8e4a-1e93515b625b",
+   "reference": "10507",
+   "residency": {
+    "id": 3288,
+    "guid": "2ae10452-c9a6-41c7-b520-602e34412d16",
+    "reference": "3288",
+    "name": "AUBERVILLIERS - 3 RUE DES QUATRE CHEMINS",
+    "type": {
+     "id": 15,
+     "ordering": 1,
+     "code": "SOC",
+     "label": "Logement familial",
+     "product": {
+      "id": 2,
+      "guid": "712f4424-7590-4912-8ed8-f192b26557f8",
+      "ordering": 2,
+      "code": "PERN",
+      "label": "Patrimoine Pérenne"
+     }
+    }
+   },
+   "lodging": {
+    "id": 23969,
+    "guid": "977d15e8-38ae-4982-ba6e-5d5b925d52ff",
+    "reference": "23969",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": {
+     "id": 2,
+     "ordering": 1,
+     "code": "A",
+     "label": "Appartement"
+    },
+    "lodgingTypology": {
+     "id": 7,
+     "ordering": 6,
+     "code": "T2",
+     "label": "T2",
+     "commercialLabel": "T2"
+    },
+    "area": 42.2,
+    "municipality": {
+     "id": 35001,
+     "postcode": "93300",
+     "code": "93001",
+     "name": "Aubervilliers"
+    },
+    "description": "Un appartement de type 2 comprenant : une entrée avec placard, un séjour simple, une cuisine ouverte équipée, une chambre avec placard, une salle de bains, un wc séparé."
+   },
+   "availableAt": "2026-09-25",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 885.0,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-07",
+   "description": "Dans la commune d'AUBERVILLIERS, situé rue des 4 Chemins, appartement de 2 pièces, d'une superficie de 42 m² situé au 1er étage\n\nVous bénéficierez de toutes les commodités, des transports en commun, métro ligne 7, direction Pantin quatre chemins.\n\nLa résidence est située au voisinage des commerces de proximité, des infrastructures diverses et culturelles, crèches et écoles.\n\nLe chauffage est Individuel au Gaz ; logement disponible à partir du 30/06/2025\n\n\n",
+   "isRecent": true,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 50683,
+   "guid": "af89980c-b340-494c-872f-e6e11c50510b",
+   "reference": "50683",
+   "residency": {
+    "id": 3288,
+    "guid": "2ae10452-c9a6-41c7-b520-602e34412d16",
+    "reference": "3288",
+    "name": "AUBERVILLIERS - 3 RUE DES QUATRE CHEMINS",
+    "type": {
+     "id": 15,
+     "ordering": 1,
+     "code": "SOC",
+     "label": "Logement familial",
+     "product": {
+      "id": 2,
+      "guid": "712f4424-7590-4912-8ed8-f192b26557f8",
+      "ordering": 2,
+      "code": "PERN",
+      "label": "Patrimoine Pérenne"
+     }
+    }
+   },
+   "lodging": {
+    "id": 58349,
+    "guid": "e3c8f954-6534-4eb0-83c8-ef6042c30b29",
+    "reference": "58349",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": {
+     "id": 2,
+     "ordering": 1,
+     "code": "A",
+     "label": "Appartement"
+    },
+    "lodgingTypology": {
+     "id": 7,
+     "ordering": 6,
+     "code": "T2",
+     "label": "T2",
+     "commercialLabel": "T2"
+    },
+    "area": 51.0,
+    "municipality": {
+     "id": 35001,
+     "postcode": "93300",
+     "code": "93001",
+     "name": "Aubervilliers"
+    },
+    "description": "Un appartement de type 2 comprenant : un séjour simple, une cuisine séparée équipée, une chambre avec placard, deux dégagements dont un avec placard, une salle de bains, un wc séparé, une loggia."
+   },
+   "availableAt": "2026-09-25",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 950.0,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-01",
+   "description": "A AUBERVILLIERS (Rue des Quatre Chemins), nous vous y proposons un appartement type T2, d’une superficie de 51 m² au 1er étage sans ascenseur.\n\nUn appartement comprenant : un séjour simple, une cuisine séparée équipée, une chambre avec placard, deux dégagements dont un avec placard, une salle de bains, un wc séparé, une loggia.\n\nChauffage individuel gaz\nDisponibilité prévisionnelle 30 septembre 2026\nLe bien est géré par une agence immobilière locale qui réalisera l'étude du dossier, la visite, la signature de bail et l'entrée dans les lieux. \nAucuns frais d'agence ne vous sera demandé\n  \nPour accéder à ce logement, à la demande du bailleur, la composition familiale à respecter est :\n\n1 adulte et 1 enfant\n1 couple et 1 enfant\n1 couple sans enfant\n1 adulte sans enfant",
+   "isRecent": true,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 52860,
+   "guid": "31eea583-f6b9-4247-8040-06f208880b90",
+   "reference": "52860",
+   "residency": {
+    "id": 73,
+    "guid": "6f68e620-973c-48aa-9e6b-a210b1e2bc57",
+    "reference": "73",
+    "name": "BOBIGNY JAM - DESMOULINS",
+    "type": {
+     "id": 1,
+     "ordering": 2,
+     "code": "RJA",
+     "label": "Résidence sociale jeunes actifs",
+     "product": {
+      "id": 1,
+      "guid": "40ce59b9-265f-45da-b8b6-3396d06fe66c",
+      "ordering": 1,
+      "code": "TEMP",
+      "label": "Patrimoine Temporaire"
+     }
+    }
+   },
+   "lodging": {
+    "id": 60426,
+    "guid": "63014ab2-5d0f-428d-95b8-f20249c86f77",
+    "reference": "60426",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": null,
+    "lodgingTypology": {
+     "id": 4,
+     "ordering": 3,
+     "code": "T1P",
+     "label": "T1'",
+     "commercialLabel": "T1'"
+    },
+    "area": 20.0,
+    "municipality": {
+     "id": 35005,
+     "postcode": "93000",
+     "code": "93008",
+     "name": "Bobigny"
+    },
+    "description": ""
+   },
+   "availableAt": "2026-11-06",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 606.56,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-22",
+   "description": "Résidence proche des transports en commun  \n\nLogement meublé, toutes charges comprises (eau, électricité, chauffage) \n\nPas de frais de dossier, éligible APL \n\nAssurance multirisque habitation à 2,55€ par mois \n\nGestion locative sociale adaptée et actions de convivialité \n\nLa date limite de dépôt de candidature n'est pas contractuelle",
+   "isRecent": false,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 52770,
+   "guid": "dba1120a-a7a1-4731-a1f8-ff3557ab67d4",
+   "reference": "52770",
+   "residency": {
+    "id": 289,
+    "guid": "437eba92-2fd1-43b3-b7ec-104b89f089e5",
+    "reference": "289",
+    "name": "BOBIGNY",
+    "type": {
+     "id": 2,
+     "ordering": 6,
+     "code": "RSC",
+     "label": "Résidence sociale",
+     "product": {
+      "id": 1,
+      "guid": "40ce59b9-265f-45da-b8b6-3396d06fe66c",
+      "ordering": 1,
+      "code": "TEMP",
+      "label": "Patrimoine Temporaire"
+     }
+    }
+   },
+   "lodging": {
+    "id": 60324,
+    "guid": "52acccfb-4722-4089-adbb-84b4e21fdae1",
+    "reference": "60324",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": {
+     "id": 2,
+     "ordering": 1,
+     "code": "A",
+     "label": "Appartement"
+    },
+    "lodgingTypology": {
+     "id": 3,
+     "ordering": 2,
+     "code": "T1",
+     "label": "T1",
+     "commercialLabel": "T1"
+    },
+    "area": 19.18,
+    "municipality": {
+     "id": 35005,
+     "postcode": "93000",
+     "code": "93008",
+     "name": "Bobigny"
+    },
+    "description": null
+   },
+   "availableAt": "2026-10-31",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 478.37,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-21",
+   "description": "Ce logement est proche de toutes commodités (Commerces de proximité, supermarchés et services accessible à pied, restaurants, pharmacies et équipements du quotidien à quelques minutes).\n\nAccès rapide aux transports en commun facilitant les déplacements vers Paris et les environs.\n",
+   "isRecent": false,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 52481,
+   "guid": "3e76d737-7a28-4a2c-913a-9c3c4d2111af",
+   "reference": "52481",
+   "residency": {
+    "id": 73,
+    "guid": "6f68e620-973c-48aa-9e6b-a210b1e2bc57",
+    "reference": "73",
+    "name": "BOBIGNY JAM - DESMOULINS",
+    "type": {
+     "id": 1,
+     "ordering": 2,
+     "code": "RJA",
+     "label": "Résidence sociale jeunes actifs",
+     "product": {
+      "id": 1,
+      "guid": "40ce59b9-265f-45da-b8b6-3396d06fe66c",
+      "ordering": 1,
+      "code": "TEMP",
+      "label": "Patrimoine Temporaire"
+     }
+    }
+   },
+   "lodging": {
+    "id": 60031,
+    "guid": "5ac6963c-e43f-4bee-bb1a-e6cd384a6f1f",
+    "reference": "60031",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": null,
+    "lodgingTypology": {
+     "id": 4,
+     "ordering": 3,
+     "code": "T1P",
+     "label": "T1'",
+     "commercialLabel": "T1'"
+    },
+    "area": 20.27,
+    "municipality": {
+     "id": 35005,
+     "postcode": "93000",
+     "code": "93008",
+     "name": "Bobigny"
+    },
+    "description": ""
+   },
+   "availableAt": "2026-10-26",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 606.56,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-19",
+   "description": "Résidence proche des transports en commun  \n\nLogement meublé, toutes charges comprises (eau, électricité, chauffage) \n\nPas de frais de dossier, éligible APL \n\nAssurance multirisque habitation à 2,55€ par mois \n\nGestion locative sociale adaptée et actions de convivialité \n\n\nLa date limite de dépôt de candidature n'est pas contractuelle\n",
+   "isRecent": false,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 46746,
+   "guid": "f4c57786-9b5d-4af6-a31c-03503bad3623",
+   "reference": "46746",
+   "residency": {
+    "id": 4555,
+    "guid": "ef3162c3-cf05-4034-a77e-05e4e7993c15",
+    "reference": "4555",
+    "name": "GARGES-LES-GONESSE - FORT STAINS NORD",
+    "type": {
+     "id": 15,
+     "ordering": 1,
+     "code": "SOC",
+     "label": "Logement familial",
+     "product": {
+      "id": 2,
+      "guid": "712f4424-7590-4912-8ed8-f192b26557f8",
+      "ordering": 2,
+      "code": "PERN",
+      "label": "Patrimoine Pérenne"
+     }
+    }
+   },
+   "lodging": {
+    "id": 55180,
+    "guid": "d5e3d7f8-3b37-4eac-848b-e936233b8e88",
+    "reference": "55180",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": {
+     "id": 2,
+     "ordering": 1,
+     "code": "A",
+     "label": "Appartement"
+    },
+    "lodgingTypology": {
+     "id": 7,
+     "ordering": 6,
+     "code": "T2",
+     "label": "T2",
+     "commercialLabel": "T2"
+    },
+    "area": 58.52,
+    "municipality": {
+     "id": 35166,
+     "postcode": "95140",
+     "code": "95268",
+     "name": "Garges-lès-Gonesse"
+    },
+    "description": "Un appartement de type 2 comprenant : une entrée avec placard, un séjour, une cuisine séparée, un wc séparé, un dégagement, une chambre avec placard, une salle de bains, une terrasse et un jardin."
+   },
+   "availableAt": "2026-09-14",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 948.31,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-20",
+   "description": "A GARGES-LES-GONESSE (Lieu-Dit Fort de Stains), nous vous y proposons un appartement de type T2, d’une superficie de 58,52 m² au Rez-de-Chaussée avec ascenseur.\n\nUn appartement comprenant : une entrée avec placard, un séjour, une cuisine séparée, un wc séparé, un dégagement, une chambre avec placard, une salle de bains, une terrasse et un jardin. \n\nChauffage Individuel gaz\nDisponibilité prévisionnelle 14/09/2026 \nLe bien est géré par une agence immobilière locale qui réalisera l'étude du dossier, la visite, la signature de bail et l'entrée dans les lieux. \nAucuns frais d'agence ne vous sera demandé\n  \nPour accéder à ce logement, à la demande du bailleur, la composition familiale à respecter est :\n\n1 adulte et 1 enfant\n1 couple et 1 enfant\n1 couple sans enfant\n1 adulte sans enfant",
+   "isRecent": false,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 48431,
+   "guid": "6592481d-296e-4b7d-b153-35f6bc6fe67c",
+   "reference": "48431",
+   "residency": {
+    "id": 8026,
+    "guid": "8e7fe2df-5e11-48d3-ab15-f6eb8e75b743",
+    "reference": "8026",
+    "name": "LA COURNEUVE 26 VALMY   ",
+    "type": {
+     "id": 15,
+     "ordering": 1,
+     "code": "SOC",
+     "label": "Logement familial",
+     "product": {
+      "id": 2,
+      "guid": "712f4424-7590-4912-8ed8-f192b26557f8",
+      "ordering": 2,
+      "code": "PERN",
+      "label": "Patrimoine Pérenne"
+     }
+    }
+   },
+   "lodging": {
+    "id": 56495,
+    "guid": "2850a5b8-91b0-4783-8a81-500141760290",
+    "reference": "56495",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": {
+     "id": 2,
+     "ordering": 1,
+     "code": "A",
+     "label": "Appartement"
+    },
+    "lodgingTypology": {
+     "id": 7,
+     "ordering": 6,
+     "code": "T2",
+     "label": "T2",
+     "commercialLabel": "T2"
+    },
+    "area": 49.96,
+    "municipality": {
+     "id": 35010,
+     "postcode": "93120",
+     "code": "93027",
+     "name": "La Courneuve"
+    },
+    "description": "Découvrez notre résidence à La Courneuve, comportant  64 logements avec des parkings, et construite en 2026. La capitale (Paris-Gare du Nord) est accessible en seulement 7 minutes par le RER B en gare de La Courneuve -Aubervilliers, cette résidence qui est parfaitement bien desservie par le via les transports en communs,RER B, axes autoroutiers A86,A1 et N2 et le réseau RATP. Profitez également et à proximité immédiate de groupes scolaires, d'une zone commerciale, de complexes sportifs et d'un grand parc départemental. La Courneuve est une ville dynamique de la Seine Saint- Denis à seulement deux pas de Paris Centre (7km).\n                                                                                                                                                                                                                                                                                                                                                                                 - Le parking est obligatoire sur cette offre"
+   },
+   "availableAt": "2027-02-02",
+   "isLodgingFirstTimeAvailable": true,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 955.05,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-20",
+   "description": "Découvrez notre résidence à La Courneuve située rue des Francs Tireurs, comportant 64 logements avec des parkings, et construite en 2026. La capitale (Paris Gare du Nord) est accessible en seulement 7 minutes par le RER B en gare de La Courneuve -Aubervilliers, cette résidence qui est parfaitement bien desservie par le via les transports en communs, RER B, axes autoroutiers A86,A1 et N2 et le réseau RATP. Profitez également et à proximité immédiate de groupes scolaires, d'une zone commerciale, de complexes sportifs et d'un grand parc départemental. La Courneuve est une ville dynamique de la Seine Saint- Denis à seulement deux pas de Paris Centre (7km). Le parking est obligatoire sur cette offre.",
+   "isRecent": true,
+   "isNewLodging": true,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 51603,
+   "guid": "258b47f7-ad13-4d1d-a2fc-b227048b2ab8",
+   "reference": "51603",
+   "residency": {
+    "id": 6556,
+    "guid": "6233ca78-c8d5-4e8c-893d-545b485c907a",
+    "reference": "6556",
+    "name": "LA COURNEUVE ST LUCIEN  ",
+    "type": {
+     "id": 15,
+     "ordering": 1,
+     "code": "SOC",
+     "label": "Logement familial",
+     "product": {
+      "id": 2,
+      "guid": "712f4424-7590-4912-8ed8-f192b26557f8",
+      "ordering": 2,
+      "code": "PERN",
+      "label": "Patrimoine Pérenne"
+     }
+    }
+   },
+   "lodging": {
+    "id": 59085,
+    "guid": "2ae1aab4-5c69-4d08-b740-03a9a198b2ee",
+    "reference": "59085",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": {
+     "id": 2,
+     "ordering": 1,
+     "code": "A",
+     "label": "Appartement"
+    },
+    "lodgingTypology": {
+     "id": 8,
+     "ordering": 7,
+     "code": "T3",
+     "label": "T3",
+     "commercialLabel": "T3"
+    },
+    "area": 63.0,
+    "municipality": {
+     "id": 35010,
+     "postcode": "93120",
+     "code": "93027",
+     "name": "La Courneuve"
+    },
+    "description": "8 logements avec parkings dans cet immeuble a 15mn à pied du centre de cette commune dotée de nombreux commerces et transports et à 10mn de la station de tramway Six Routes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           "
+   },
+   "availableAt": "2026-09-01",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 899.31,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-14",
+   "description": "8 logements avec parkings dans cet immeuble a 15mn à pied du centre de cette commune dotée de nombreux commerces et transports et à 10mn de la station de tramway Six Routes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ",
+   "isRecent": false,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 51606,
+   "guid": "0070f1ba-7455-4668-89e4-82b630658241",
+   "reference": "51606",
+   "residency": {
+    "id": 6556,
+    "guid": "6233ca78-c8d5-4e8c-893d-545b485c907a",
+    "reference": "6556",
+    "name": "LA COURNEUVE ST LUCIEN  ",
+    "type": {
+     "id": 15,
+     "ordering": 1,
+     "code": "SOC",
+     "label": "Logement familial",
+     "product": {
+      "id": 2,
+      "guid": "712f4424-7590-4912-8ed8-f192b26557f8",
+      "ordering": 2,
+      "code": "PERN",
+      "label": "Patrimoine Pérenne"
+     }
+    }
+   },
+   "lodging": {
+    "id": 59087,
+    "guid": "d1c2f3a4-4bf5-484a-afa8-d15e299231c4",
+    "reference": "59087",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": {
+     "id": 2,
+     "ordering": 1,
+     "code": "A",
+     "label": "Appartement"
+    },
+    "lodgingTypology": {
+     "id": 8,
+     "ordering": 7,
+     "code": "T3",
+     "label": "T3",
+     "commercialLabel": "T3"
+    },
+    "area": 68.0,
+    "municipality": {
+     "id": 35010,
+     "postcode": "93120",
+     "code": "93027",
+     "name": "La Courneuve"
+    },
+    "description": "8 logements avec parkings dans cet immeuble a 15mn à pied du centre de cette commune dotée de nombreux commerces et transports et à 10mn de la station de tramway Six Routes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           "
+   },
+   "availableAt": "2026-09-01",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 917.48,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-14",
+   "description": "8 logements avec parkings dans cet immeuble a 15mn à pied du centre de cette commune dotée de nombreux commerces et transports et à 10mn de la station de tramway Six Routes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ",
+   "isRecent": false,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 50193,
+   "guid": "cb1d136a-d8b0-4748-a65e-eabc30410774",
+   "reference": "50193",
+   "residency": {
+    "id": 8218,
+    "guid": "b308b4bd-6f62-431d-b3e9-ec2f9f0fbea6",
+    "reference": "8218",
+    "name": "LE PRE S GERVAIS 71 VAIL",
+    "type": {
+     "id": 15,
+     "ordering": 1,
+     "code": "SOC",
+     "label": "Logement familial",
+     "product": {
+      "id": 2,
+      "guid": "712f4424-7590-4912-8ed8-f192b26557f8",
+      "ordering": 2,
+      "code": "PERN",
+      "label": "Patrimoine Pérenne"
+     }
+    }
+   },
+   "lodging": {
+    "id": 57925,
+    "guid": "f30e0bfb-61cf-4eea-be76-41ec1f74ddef",
+    "reference": "57925",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": {
+     "id": 2,
+     "ordering": 1,
+     "code": "A",
+     "label": "Appartement"
+    },
+    "lodgingTypology": {
+     "id": 3,
+     "ordering": 2,
+     "code": "T1",
+     "label": "T1",
+     "commercialLabel": "T1"
+    },
+    "area": 29.8,
+    "municipality": {
+     "id": 35028,
+     "postcode": "93310",
+     "code": "93061",
+     "name": "Le Pré-Saint-Gervais"
+    },
+    "description": "Venez découvrir au Pré Saint Gervais, 33 logements au sein d’une résidence construite en 2026. Vous bénéficierez dans la ville de beaucoup de commodités (commerces, infrastructures éducatives et sportives), mais également de nombreux espaces verts. Vous pourez profiter de la ligne 11 du métro parisien (Station Mairie des Lilas) qui se situe à moins de 800 m de la résidence . Le Pré Saint Gervais est une ville calme et agréable localisée dans le département de la Seine-Saint-Denis.\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 "
+   },
+   "availableAt": "2026-12-10",
+   "isLodgingFirstTimeAvailable": true,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 810.91,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-09-30",
+   "description": "Venez découvrir au Pré Saint Gervais, avenue Edouard Vaillant, 33 logements au sein d'une résidence construite en 2026. Vous bénéficierez dans la ville de beaucoup de commodités (commerces, infrastructures éducatives et sportives), mais également de nombreux espaces verts. Vous pourrez profitez de la ligne 11 du métro parisien (station Mairie des Lilas) qui se située à mois de 800 m de la résidence. Le Pré Saint Gervais est une ville calme et agréable localisée dans le département de la Seine St Denis.",
+   "isRecent": true,
+   "isNewLodging": true,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 52730,
+   "guid": "3a9506b6-e451-473c-b9b4-4bf1beff3b6b",
+   "reference": "52730",
+   "residency": {
+    "id": 4210,
+    "guid": "e6c0f6f8-779d-4b4c-9590-13a4dab7cddc",
+    "reference": "4210",
+    "name": "RÉSIDENCE SOCIALE/FOYER DE MONTREUIL",
+    "type": {
+     "id": 2,
+     "ordering": 6,
+     "code": "RSC",
+     "label": "Résidence sociale",
+     "product": {
+      "id": 1,
+      "guid": "40ce59b9-265f-45da-b8b6-3396d06fe66c",
+      "ordering": 1,
+      "code": "TEMP",
+      "label": "Patrimoine Temporaire"
+     }
+    }
+   },
+   "lodging": {
+    "id": 60278,
+    "guid": "8d2c27c7-68f1-4350-9fbf-6f2e5c54de40",
+    "reference": "60278",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": null,
+    "lodgingTypology": {
+     "id": 3,
+     "ordering": 2,
+     "code": "T1",
+     "label": "T1",
+     "commercialLabel": "T1"
+    },
+    "area": 9.0,
+    "municipality": {
+     "id": 35020,
+     "postcode": "93100",
+     "code": "93048",
+     "name": "Montreuil"
+    },
+    "description": ""
+   },
+   "availableAt": "2026-11-01",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 671910213.0,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-21",
+   "description": "A 15 min du centre animé Croix-de-Chavaux, la Résidence bénéficie d’une localisation attractive dans le quartier agréable des grands pêchers, bien desservie par les transports. L’offre de logements est composée de studettes avec espace cuisine et des sanitaires partagés.\n\nLa date limite de dépôt de candidature n'est pas contractuelle\n\n\n",
+   "isRecent": false,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 52587,
+   "guid": "df7b566d-a3ac-4a4a-b30e-ecae1648d80d",
+   "reference": "52587",
+   "residency": {
+    "id": 110,
+    "guid": "888d6e07-56ba-4627-b141-ef9ab343d185",
+    "reference": "110",
+    "name": "NOGENT",
+    "type": {
+     "id": 1,
+     "ordering": 2,
+     "code": "RJA",
+     "label": "Résidence sociale jeunes actifs",
+     "product": {
+      "id": 1,
+      "guid": "40ce59b9-265f-45da-b8b6-3396d06fe66c",
+      "ordering": 1,
+      "code": "TEMP",
+      "label": "Patrimoine Temporaire"
+     }
+    }
+   },
+   "lodging": {
+    "id": 13174,
+    "guid": "c10800a9-904d-49bb-bc35-cf7fac84572e",
+    "reference": "13174",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": null,
+    "lodgingTypology": {
+     "id": 3,
+     "ordering": 2,
+     "code": "T1",
+     "label": "T1",
+     "commercialLabel": "T1"
+    },
+    "area": 19.61,
+    "municipality": {
+     "id": 35066,
+     "postcode": "94130",
+     "code": "94052",
+     "name": "Nogent-sur-Marne"
+    },
+    "description": "\nLa date limite de dépôt de candidature n'est pas contractuelle."
+   },
+   "availableAt": "2026-11-02",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 515.81,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-20",
+   "description": "Résidence proche des transports en commun - À 10 minutes du RER E – Nogent/Le Perreux.\nLogement meublé, toutes charges comprises (eau, électricité, chauffage)\nPas de frais de dossier, éligible APL\nAssurance multirisque habitation à 2,55€ par mois\nGestion locative sociale adaptée et actions de convivialité\n \nLa date limite de dépôt de candidature n'est pas contractuelle\n\n\n\nLa date limite de dépôt de candidature n'est pas contractuelle.\n\n",
+   "isRecent": false,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 7023,
+   "guid": "73798386-5c43-4aa9-8c59-c966fe1bd7bf",
+   "reference": "7023",
+   "residency": {
+    "id": 205,
+    "guid": "5b18d355-0739-41f7-992d-5a187a329945",
+    "reference": "205",
+    "name": "MONTEMPO NOISY LE SEC",
+    "type": {
+     "id": 3,
+     "ordering": 7,
+     "code": "RHV",
+     "label": "Résidence hôtelière à vocation sociale",
+     "product": {
+      "id": 1,
+      "guid": "40ce59b9-265f-45da-b8b6-3396d06fe66c",
+      "ordering": 1,
+      "code": "TEMP",
+      "label": "Patrimoine Temporaire"
+     }
+    }
+   },
+   "lodging": {
+    "id": 20570,
+    "guid": "a2e8147c-ddac-41af-8c99-519d5b7490fa",
+    "reference": "20570",
+    "lodgingType": "TYPE",
+    "lodgingCategory": null,
+    "lodgingTypology": {
+     "id": 3,
+     "ordering": 2,
+     "code": "T1",
+     "label": "T1",
+     "commercialLabel": "T1"
+    },
+    "area": 17.0,
+    "municipality": {
+     "id": 35024,
+     "postcode": "93130",
+     "code": "93053",
+     "name": "Noisy-le-Sec"
+    },
+    "description": ""
+   },
+   "availableAt": "2026-01-02",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 1,
+    "ordering": 2,
+    "code": "JNR",
+    "label": "Journalier"
+   },
+   "totalRentAmountBaseBound": 37.0,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-01-06",
+   "description": "Notre partenaire Montempô, vous propose une offre de logement en appart'hôtel au 75 Avenue Gallieni, 93130 Noisy-le-Sec.\n \nLes studios sont tout équipés pour vos séjours d'affaires ou de loisirs.\nServices inclus : kitchenette, accueil 24/7J, transports en commun à proximité, laverie 24/7J, WiFi gratuit, bagagerie, local vélo.\nLa résidence Montempô Noisy-Le-Sec située à proximité de la gare RER de Noisy-Le-Sec. \n\nPetit-déjeuner buffet payant\n \nLa durée du séjour peut être d’une nuit à plusieurs mois. \n \nAfin de finaliser votre demande et réserver votre studio Montempô (sous réserve de disponibilités), et bénéficier de l’offre Action logement, nous vous invitons à suivre le lien ci-dessous : \n \nhttps://www.montempo.fr/sejours/offres-appart-hotel/logement-temporaire/ \n \nTarification longue durée : \n37€/ nuit dès 28 nuits consécutives.\n\n1 à 4 nuits : à partir de 52€/nuit\n5 à 27 nuits : à partir de 44€/nuit\n\nNos tarifs sont hors taxe de séjour de 3,25€ par personne et par nuit\n \n \n\n",
+   "isRecent": false,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 52862,
+   "guid": "a3e40676-f1f8-4be8-bee9-e0094f016cab",
+   "reference": "52862",
+   "residency": {
+    "id": 764,
+    "guid": "d0c017e7-9220-41bf-8aa4-c14f3e9cb814",
+    "reference": "764",
+    "name": "PIERREFITTE AMIEN RS",
+    "type": {
+     "id": 2,
+     "ordering": 6,
+     "code": "RSC",
+     "label": "Résidence sociale",
+     "product": {
+      "id": 1,
+      "guid": "40ce59b9-265f-45da-b8b6-3396d06fe66c",
+      "ordering": 1,
+      "code": "TEMP",
+      "label": "Patrimoine Temporaire"
+     }
+    }
+   },
+   "lodging": {
+    "id": 13035,
+    "guid": "a39babe6-327d-488b-896a-0087d62818c5",
+    "reference": "13035",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": {
+     "id": 2,
+     "ordering": 1,
+     "code": "A",
+     "label": "Appartement"
+    },
+    "lodgingTypology": {
+     "id": 3,
+     "ordering": 2,
+     "code": "T1",
+     "label": "T1",
+     "commercialLabel": "T1"
+    },
+    "area": 18.0,
+    "municipality": {
+     "id": 35618,
+     "postcode": "93380",
+     "code": "93066",
+     "name": "Saint-Denis"
+    },
+    "description": null
+   },
+   "availableAt": "2026-10-22",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 472.59,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-22",
+   "description": "Ce logement est proche de toutes commodités (Commerces de proximité, supermarchés et services accessible à pied, restaurants, pharmacies et équipements du quotidien à quelques minutes).\n\nAccès rapide aux transports en commun facilitant les déplacements vers Paris et les environs.\n\nLa date limite de dépôt de candidature n'est pas contractuelle\n",
+   "isRecent": false,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 52863,
+   "guid": "7bef1fef-3170-45d5-b612-6ffddc8e4c19",
+   "reference": "52863",
+   "residency": {
+    "id": 4840,
+    "guid": "5829e25d-ea25-4848-81ad-a486c4e0f1aa",
+    "reference": "4840",
+    "name": "PARME",
+    "type": {
+     "id": 2,
+     "ordering": 6,
+     "code": "RSC",
+     "label": "Résidence sociale",
+     "product": {
+      "id": 1,
+      "guid": "40ce59b9-265f-45da-b8b6-3396d06fe66c",
+      "ordering": 1,
+      "code": "TEMP",
+      "label": "Patrimoine Temporaire"
+     }
+    }
+   },
+   "lodging": {
+    "id": 59534,
+    "guid": "3edb51f2-15a3-4979-8f33-cfeb12668e87",
+    "reference": "59534",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": null,
+    "lodgingTypology": {
+     "id": 3,
+     "ordering": 2,
+     "code": "T1",
+     "label": "T1",
+     "commercialLabel": "T1"
+    },
+    "area": 18.0,
+    "municipality": {
+     "id": 35032,
+     "postcode": "93200",
+     "code": "93066",
+     "name": "Saint-Denis"
+    },
+    "description": ""
+   },
+   "availableAt": "2026-11-20",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 497.68,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-22",
+   "description": "Logement situé dans un bon quartier , à proximité des transports en commun , commerces , écoles et d'autres services utiles .\n\nLa date limite de dépôt de candidature n'est pas contractuelle\n\n",
+   "isRecent": false,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 52542,
+   "guid": "1443a5a2-3429-48d3-b47b-c5e5389e1cf6",
+   "reference": "52542",
+   "residency": {
+    "id": 8544,
+    "guid": "d473593e-148b-418c-afb7-58e432207a04",
+    "reference": "8544",
+    "name": "SAINT-DENIS",
+    "type": {
+     "id": 2,
+     "ordering": 6,
+     "code": "RSC",
+     "label": "Résidence sociale",
+     "product": {
+      "id": 1,
+      "guid": "40ce59b9-265f-45da-b8b6-3396d06fe66c",
+      "ordering": 1,
+      "code": "TEMP",
+      "label": "Patrimoine Temporaire"
+     }
+    }
+   },
+   "lodging": {
+    "id": 60087,
+    "guid": "b00d4976-a069-4c09-9f2a-a11849ae94e6",
+    "reference": "60087",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": null,
+    "lodgingTypology": {
+     "id": 3,
+     "ordering": 2,
+     "code": "T1",
+     "label": "T1",
+     "commercialLabel": "T1"
+    },
+    "area": 12.0,
+    "municipality": {
+     "id": 35032,
+     "postcode": "93200",
+     "code": "93066",
+     "name": "Saint-Denis"
+    },
+    "description": ""
+   },
+   "availableAt": "2026-10-20",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 467.79,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-20",
+   "description": "Ce logement est proche de toutes commodités (Commerces de proximité, supermarchés et services accessible à pied, restaurants, pharmacies et équipements du quotidien à quelques minutes).\n\nAccès rapide aux transports en commun facilitant les déplacements vers Paris et les environs.\n\nLa date limite de dépôt de candidature n'est pas contractuelle\n",
+   "isRecent": false,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 52545,
+   "guid": "8c21a087-18de-4d83-8b06-73d32ed15b62",
+   "reference": "52545",
+   "residency": {
+    "id": 8544,
+    "guid": "d473593e-148b-418c-afb7-58e432207a04",
+    "reference": "8544",
+    "name": "SAINT-DENIS",
+    "type": {
+     "id": 2,
+     "ordering": 6,
+     "code": "RSC",
+     "label": "Résidence sociale",
+     "product": {
+      "id": 1,
+      "guid": "40ce59b9-265f-45da-b8b6-3396d06fe66c",
+      "ordering": 1,
+      "code": "TEMP",
+      "label": "Patrimoine Temporaire"
+     }
+    }
+   },
+   "lodging": {
+    "id": 60089,
+    "guid": "c40706b5-2dff-40a6-b083-8de0ee1919bc",
+    "reference": "60089",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": null,
+    "lodgingTypology": {
+     "id": 3,
+     "ordering": 2,
+     "code": "T1",
+     "label": "T1",
+     "commercialLabel": "T1"
+    },
+    "area": 12.0,
+    "municipality": {
+     "id": 35032,
+     "postcode": "93200",
+     "code": "93066",
+     "name": "Saint-Denis"
+    },
+    "description": ""
+   },
+   "availableAt": "2026-10-20",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 467.79,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-20",
+   "description": "Ce logement est proche de toutes commodités (Commerces de proximité, supermarchés et services accessible à pied, restaurants, pharmacies et équipements du quotidien à quelques minutes).\n\nAccès rapide aux transports en commun facilitant les déplacements vers Paris et les environs.\n\nLa date limite de dépôt de candidature n'est pas contractuelle\n",
+   "isRecent": false,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 52546,
+   "guid": "c0eb5fb0-e41f-4359-81a3-7fd23d52a4b8",
+   "reference": "52546",
+   "residency": {
+    "id": 8544,
+    "guid": "d473593e-148b-418c-afb7-58e432207a04",
+    "reference": "8544",
+    "name": "SAINT-DENIS",
+    "type": {
+     "id": 2,
+     "ordering": 6,
+     "code": "RSC",
+     "label": "Résidence sociale",
+     "product": {
+      "id": 1,
+      "guid": "40ce59b9-265f-45da-b8b6-3396d06fe66c",
+      "ordering": 1,
+      "code": "TEMP",
+      "label": "Patrimoine Temporaire"
+     }
+    }
+   },
+   "lodging": {
+    "id": 60090,
+    "guid": "d1d19c4d-ac40-40a3-a343-a13cfddbc54d",
+    "reference": "60090",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": null,
+    "lodgingTypology": {
+     "id": 3,
+     "ordering": 2,
+     "code": "T1",
+     "label": "T1",
+     "commercialLabel": "T1"
+    },
+    "area": 12.0,
+    "municipality": {
+     "id": 35032,
+     "postcode": "93200",
+     "code": "93066",
+     "name": "Saint-Denis"
+    },
+    "description": ""
+   },
+   "availableAt": "2026-10-20",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 467.79,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-20",
+   "description": "Ce logement est proche de toutes commodités (Commerces de proximité, supermarchés et services accessible à pied, restaurants, pharmacies et équipements du quotidien à quelques minutes).\n\nAccès rapide aux transports en commun facilitant les déplacements vers Paris et les environs.\n\nLa date limite de dépôt de candidature n'est pas contractuelle\n",
+   "isRecent": false,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  },
+  {
+   "id": 51998,
+   "guid": "2c8664a4-fdd0-4f4a-a01b-9010a8990261",
+   "reference": "51998",
+   "residency": {
+    "id": 6508,
+    "guid": "df50e302-38a8-416b-a1ed-9c95615526b3",
+    "reference": "6508",
+    "name": "SAINT-DENIS - 16 LANDY",
+    "type": {
+     "id": 15,
+     "ordering": 1,
+     "code": "SOC",
+     "label": "Logement familial",
+     "product": {
+      "id": 2,
+      "guid": "712f4424-7590-4912-8ed8-f192b26557f8",
+      "ordering": 2,
+      "code": "PERN",
+      "label": "Patrimoine Pérenne"
+     }
+    }
+   },
+   "lodging": {
+    "id": 59556,
+    "guid": "a4dd6d4d-9a6d-433d-b5ef-b3df0a0635dd",
+    "reference": "59556",
+    "lodgingType": "IDENTIFIED",
+    "lodgingCategory": {
+     "id": 2,
+     "ordering": 1,
+     "code": "A",
+     "label": "Appartement"
+    },
+    "lodgingTypology": {
+     "id": 7,
+     "ordering": 6,
+     "code": "T2",
+     "label": "T2",
+     "commercialLabel": "T2"
+    },
+    "area": 54.8,
+    "municipality": {
+     "id": 35032,
+     "postcode": "93200",
+     "code": "93066",
+     "name": "Saint-Denis"
+    },
+    "description": "Un appartement de type 2 comprenant : une entrée avec placard, un séjour simple, une cuisine séparée, un dégagement avec placard, une chambre, une salle de bains, un wc séparé, une loggia."
+   },
+   "availableAt": "2026-11-13",
+   "isLodgingFirstTimeAvailable": null,
+   "paymentType": {
+    "id": 2,
+    "ordering": 1,
+    "code": "MSL",
+    "label": "Mensuel"
+   },
+   "totalRentAmountBaseBound": 928.48,
+   "areAgencyFeesRequested": null,
+   "agencyFeesAmount": null,
+   "estimatedExternalCharges": null,
+   "startDateOfPublication": "2026-10-14",
+   "description": "A SAINT-DENIS (Rue du Landy), nous vous y proposons un appartement type T2, d’une superficie de 54,80 m² au 1er étage avec ascenseur.\n\nUn appartement comprenant : une entrée avec placard, un séjour simple, une cuisine séparée, un dégagement avec placard, une chambre, une salle de bains, un wc séparé, une loggia.\n\nChauffage individuel gaz\nDisponibilité prévisionnelle 13 novembre 2026\nLe bien est géré par une agence immobilière locale qui réalisera l'étude du dossier, la visite, la signature de bail et l'entrée dans les lieux. \nAucuns frais d'agence ne vous sera demandé\n\n  \nPour accéder à ce logement, à la demande du bailleur, la composition familiale à respecter est :\n\n1 adulte et 1 enfant\n1 couple et 1 enfant\n1 couple sans enfant\n1 adulte sans enfant",
+   "isRecent": true,
+   "isNewLodging": false,
+   "candidacy": null,
+   "orientationCode": null,
+   "rentType": "RENT_STANDARD",
+   "totalProgressiveRentAmount": null,
+   "isDemandUniqueNumberRequired": false,
+   "demandUniqueNumberCorrespondenceCode": null,
+   "offerCategory": "BLUE"
+  }
+ ],
+ "limit": 20,
+ "message": "OK",
+ "sorting": "marketingLevelPriority.ASC&lodging.address.municipality.nameUnaccentUpper.ASC&offerMarketings.startDateOfPublication.DESC&id.ASC",
+ "totalPages": 2,
+ "totalSize": 22
+}

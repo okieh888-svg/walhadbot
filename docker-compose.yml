@@ -1,0 +1,13 @@
+services:
+  agent-logement:
+    build: .
+    restart: unless-stopped        # redémarre après une erreur ou un redémarrage de Docker
+    env_file: .env
+    environment:
+      OLLAMA_URL: http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./data:/app/data           # état persistant (offres vues, sessions, captures, motifs)
+      - ./profil_candidat.md:/app/profil_candidat.md:ro
+    shm_size: "1gb"

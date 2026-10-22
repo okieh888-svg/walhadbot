@@ -1,0 +1,110 @@
+{
+ "_status": {
+  "code": "0",
+  "message": ""
+ },
+ "success": true,
+ "data": {
+  "form": [
+   {
+    "title": "Caractéristiques",
+    "fields": [
+     {
+      "name": "specialId",
+      "label": "Référence du logement",
+      "value": "T1-VILLENEUVE ST GEORGES-REF 453135",
+      "gmaps": false
+     },
+     {
+      "name": "accommodationTypeId",
+      "label": "Type de logement",
+      "value": "T1",
+      "gmaps": false
+     },
+     {
+      "name": "surface",
+      "label": "Surface",
+      "value": "28",
+      "gmaps": false
+     },
+     {
+      "name": "rentalPrice",
+      "label": "Loyer (charges comprises)",
+      "value": "624",
+      "gmaps": false
+     },
+     {
+      "name": "roommate",
+      "label": "Colocation possible",
+      "value": "Non",
+      "gmaps": false
+     },
+     {
+      "name": "dalo",
+      "label": "Public prioritaire",
+      "value": "Non",
+      "gmaps": false
+     },
+     {
+      "name": "description",
+      "label": "Description",
+      "value": "NEUF-LIVRAISON FIN NOVEMBRE<br />\r\nPARKING OBLIGATOIRE : AJOUTER EN PLUS DU LOYER 66.08 EUROS",
+      "gmaps": false
+     }
+    ]
+   },
+   {
+    "title": "Adresse",
+    "fields": [
+     {
+      "name": "address",
+      "label": "Adresse",
+      "value": "4 IMPASSE BOIELDIEU",
+      "gmaps": true
+     },
+     {
+      "name": "zipcode",
+      "label": "Code postal",
+      "value": "94190",
+      "gmaps": true
+     },
+     {
+      "name": "city",
+      "label": "Ville",
+      "value": "VILLENEUVE ST GEORGES",
+      "gmaps": true
+     },
+     {
+      "name": "gmaps",
+      "label": "Gmaps",
+      "value": "<a href=\"https://www.google.fr/maps/place/4+IMPASSE+BOIELDIEU+94190+VILLENEUVE+ST+GEORGES\" target=\"_blank\"><img src=\"/modules/gdcgui/image/aljt/gmaps.jpg\" alt=\"Gmaps\" /></a>"
+     }
+    ]
+   },
+   {
+    "title": "Informations supplémentaires",
+    "fields": [
+     {
+      "name": "dateValidity",
+      "label": "Visible jusqu'au",
+      "value": "23/10/2026",
+      "gmaps": false
+     },
+     {
+      "name": "incomeCeilingId",
+      "label": "Plafond",
+      "value": "LLI",
+      "gmaps": false
+     },
+     {
+      "name": "possibleVisit",
+      "label": "Visite du logement possible uniquement après la commission d'attribution",
+      "value": "Non",
+      "gmaps": false
+     }
+    ]
+   }
+  ]
+ },
+ "tpl": "<div class=\"offer info\"><p>En postulant, vous vous engagez :</p><ul><li>à vérifier que le logement correspond à tous vos critères (accessibilité, prix, etc.) avant la visite !</li><li>à mettre à jour vos pièces justificatives</li></ul><br /></div><div class=\"form-data\"><tpl for=\"form\"><h2>{title}</h2><div class=\"fieldset\"><tpl for=\"fields\"><div class=\"{[xindex % 2 === 0 ? \"even\" : \"odd\"]}\"><dt>{label}</dt><dd><tpl if=\"typeof value == 'object'\"><ul><tpl for=\"value\"><li>{.}</li></tpl></ul></tpl><tpl if=\"typeof value != 'object'\">{value}</tpl></dd></div></tpl></div></tpl></div><div class=\"offer info\"><p>Avant de postuler à cette offre, assurez-vous d'avoir des revenus n-2 inférieurs au plafond de ressources indiqué ci-dessus : <a href=\"/modules/account/document/plafonds_de_ressources.pdf\" target=\"_blank\">télécharger le document sur les plafonds</a></p></div>"
+}
