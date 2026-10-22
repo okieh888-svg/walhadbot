@@ -106,17 +106,30 @@ class AdaptateurActionLogement(Adaptateur):
     def _rafraichir_jeton(self) -> None:
         """Jeton valide dans le cache Auth0 du site, sinon renouvellement par son refresh_token
         (même appel /oauth/token que le site ; aucun mot de passe)."""
-        self.page.goto(self.url_base + "/search", wait_until="domcontentloaded")
+        try:
+            self.page.goto(self.url_base + "/search", wait_until="domcontentloaded")
+        except Exception as e:     # réseau pas encore revenu (réveil de veille) : simple nouvel essai plus tard
+            raise RuntimeError(f"site Action Logement injoignable ({type(e).__name__})")
+        if not self.page.url.startswith(self.url_base):
+            raise RuntimeError(f"site Action Logement non chargé ({self.page.url[:60]})")
         self._verifier_cloudflare()
         for _ in range(6):
-            if self._lire_jeton():
-                return
+            try:
+                if self._lire_jeton():
+                    return
+            except Exception:      # navigation interne du front pendant la lecture
+                pass
             self.page.wait_for_timeout(500)
-        statut = self.page.evaluate(JS_REFRESH, self.auth_url)
+        try:
+            statut = self.page.evaluate(JS_REFRESH, self.auth_url)
+        except Exception as e:     # échec réseau du renouvellement ≠ session expirée
+            raise RuntimeError(f"renouvellement du jeton impossible ({type(e).__name__}), nouvel essai plus tard")
         self.log.info("renouvellement du jeton Action Logement : %s", statut)
         if statut == 200 and self._lire_jeton():
             return
-        raise SessionExpiree(f"aucun jeton Auth0 valide (renouvellement : {statut})")
+        if statut in (400, 401, 403) or statut in ("pas de cache", "pas de refresh_token"):
+            raise SessionExpiree(f"aucun jeton Auth0 valide (renouvellement : {statut})")
+        raise RuntimeError(f"renouvellement du jeton : réponse {statut}, nouvel essai plus tard")
 
     def connexion(self) -> None:
         try:
