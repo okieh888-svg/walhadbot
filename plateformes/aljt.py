@@ -86,7 +86,10 @@ class AdaptateurALJT(Adaptateur):
             self.page.get_by_text("Les offres", exact=True).first.wait_for(timeout=20_000)
         except Exception:
             capture = self.capture("connexion-echec")
-            raise ConnexionImpossible(f"connexion ALJT refusée ou bloquée (capture : {capture})")
+            if self.page.get_by_text(re.compile("Identifiants incorrects", re.I)).count():
+                raise ConnexionImpossible(f"ALJT : identifiants incorrects (capture : {capture})")
+            # sinon : réseau absent (réveil de veille), site lent… → simple nouvel essai au passage suivant
+            raise RuntimeError(f"connexion ALJT sans réponse, nouvel essai plus tard (capture : {capture})")
         if not self._session_valide():
             raise ConnexionImpossible("connexion ALJT : session toujours invalide")
         self.log.info("connecté à l'ALJT")
