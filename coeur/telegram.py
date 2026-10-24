@@ -114,8 +114,17 @@ class Telegram(Notifieur):
             self._post("editMessageReplyMarkup", {"chat_id": self.chat_id, "message_id": message_id,
                                                   "reply_markup": json.dumps({"inline_keyboard": []})}, essais=1)
 
+    def _repondre(self, sur_question: Callable[[str], str], txt: str) -> None:
+        try:
+            rep = sur_question(txt)
+        except Exception as e:
+            log.exception("question Telegram")
+            rep = f"Je n'ai pas pu répondre ({type(e).__name__}). Essaie /statut."
+        for i in range(0, len(rep), LIMITE_TEXTE):      # pas de HTML : texte libre du LLM
+            self._post("sendMessage", {"chat_id": self.chat_id, "text": rep[i:i + LIMITE_TEXTE]})
+
     def ecouter(self, sur_commande: Callable[[str], str], sur_callback: Callable[[str], str],
-                arret: threading.Event) -> None:
+                arret: threading.Event, sur_question: Optional[Callable[[str], str]] = None) -> None:
         """Boucle bloquante (thread dédié). N'accepte que les messages de TELEGRAM_CHAT_ID."""
         if not self.actif:
             return
@@ -144,6 +153,10 @@ class Telegram(Notifieur):
                             if rep:
                                 self._post("sendMessage", {"chat_id": self.chat_id, "text": rep,
                                                            "parse_mode": "HTML"})
+                        elif txt and sur_question:
+                            # question libre : réponse dans un fil à part (le LLM peut prendre quelques secondes)
+                            self._post("sendChatAction", {"chat_id": self.chat_id, "action": "typing"}, essais=1)
+                            threading.Thread(target=self._repondre, args=(sur_question, txt), daemon=True).start()
             except Exception as e:   # réseau coupé, veille…
                 log.debug("getUpdates : %s", e)
                 arret.wait(5)

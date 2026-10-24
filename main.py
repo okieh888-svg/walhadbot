@@ -15,7 +15,7 @@ import threading
 import time
 from datetime import datetime
 
-from coeur import eveil, journal
+from coeur import assistant, eveil, journal
 from coeur.alertes import GestionAlertes
 from coeur.config import DATA, Config
 from coeur.memoire import Memoire
@@ -97,7 +97,14 @@ class Agent:
         if cmd == "/reprise":
             self.pause.clear()
             return "▶️ Surveillance reprise."
-        return "Commandes : /statut, /test, /pause, /reprise"
+        return ("Commandes : /statut, /test, /pause, /reprise.\n"
+                "Tu peux aussi m'écrire normalement, par ex. « qu'est-ce que tu as fait aujourd'hui ? » "
+                "ou « pourquoi tu n'as pas postulé ? ».")
+
+    def question(self, texte: str) -> str:
+        """Question libre sur Telegram : réponse fondée sur l'activité réelle de l'agent."""
+        return assistant.repondre(texte, self.statut(), self.moteurs, DATA / "agent.log",
+                                  self.cfg.ollama_url, self.cfg.ollama_modele, timeout=90)
 
     def notifs_de_test(self) -> None:
         """Exemples factices de chaque notification (rien n'est lu ni envoyé aux sites)."""
@@ -185,7 +192,7 @@ class Agent:
             fils += [threading.Thread(target=self._relances, daemon=True, name="relances"),
                      threading.Thread(target=self._veille, daemon=True, name="veille")]
             if isinstance(self.notif, Telegram):
-                fils.append(threading.Thread(target=self.notif.ecouter, args=(self.commande, self.callback, self.arret),
+                fils.append(threading.Thread(target=self.notif.ecouter, args=(self.commande, self.callback, self.arret, self.question),
                                              daemon=True, name="telegram"))
         for f in fils:
             f.start()

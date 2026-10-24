@@ -174,3 +174,14 @@ def test_eveil_ne_plante_pas():
     assert isinstance(eveil.sur_secteur(), bool)
     eveil.maintenir_eveil(True)
     eveil.maintenir_eveil(False)
+
+
+# ------------------------------------------------------------------ questions libres sur Telegram
+def test_assistant_repond_meme_sans_llm(tmp_path):
+    from coeur.assistant import repondre
+    journal = tmp_path / "agent.log"
+    journal.write_text("2026-10-24 03:20:52,395 INFO    [telegram] → Telegram : <b>[Agent]</b> 😴 La machine était "
+                       "en veille de 13:30 à 03:20\n", encoding="utf-8")
+    rep = repondre("tu fais quoi ?", "<b>Agent</b> actif", {}, journal, "http://127.0.0.1:9", "x", timeout=2,
+                   session=FauxLLM(erreur=requests.ConnectionError("pas d'Ollama")))
+    assert "IA locale indisponible" in rep and "Agent actif" in rep and "veille" in rep
