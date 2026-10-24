@@ -263,7 +263,8 @@ class FauxAL(FauxSite):
         return {"offres": [], "compteur": 2, "candidatures": []}
 
     @staticmethod
-    def offre(i, ville="Pantin", cp="93500", loyer=780.0, surface=47.0, typo="T2", pub="2026-10-22"):
+    def offre(i, ville="Pantin", cp="93500", loyer=780.0, surface=47.0, typo="T2", pub=None):
+        pub = pub or __import__("datetime").date.today().isoformat()
         return {"id": i, "guid": f"guid-{i}", "lodging": {"area": surface, "lodgingTypology": {"code": typo},
                 "lodgingCategory": {"label": "Appartement"}, "municipality": {"name": ville, "postcode": cp}},
                 "residency": {"name": "Résidence test"}, "totalRentAmountBaseBound": loyer,
