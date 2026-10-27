@@ -154,3 +154,24 @@ def test_agent_ko_sans_spam(tmp_path):
         m.boucle(arret, une_fois=True)
     ko = [t for t in n.textes() if "AGENT KO" in t]
     assert len(ko) == 1                                    # un seul message malgré 6 échecs
+
+
+def test_chien_de_garde_relance_si_plateforme_bloquee(monkeypatch):
+    import time as _t
+    import pytest
+    import main
+    from coeur.config import Config
+
+    class A:
+        dry_run = True; plateformes = "aljt"; visible = False; debug = False
+        telegram_factice = True; sans_connexion_auto = True; once = True
+
+    ag = main.Agent(Config(intervalles={"aljt": 300}, production={}, identifiants={"aljt": ("", "")}), A())
+    monkeypatch.setattr(main.os, "_exit", lambda code: (_ for _ in ()).throw(SystemExit(code)))
+    monkeypatch.setattr(main.time, "sleep", lambda s: None)
+    ag._chien_de_garde()                                    # récent : rien
+    assert not ag.notif.textes()
+    ag.moteurs["aljt"].derniere_activite = _t.time() - 3 * 3600
+    with pytest.raises(SystemExit):
+        ag._chien_de_garde()
+    assert "BLOQUÉ" in ag.notif.textes()[-1]

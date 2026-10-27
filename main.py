@@ -8,6 +8,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import logging
 import signal
 import sys
@@ -147,6 +148,7 @@ class Agent:
             secteur_avant = secteur
             self.battement.battre()
             self._verifier_reveil()
+            self._chien_de_garde()
             if self.arret.wait(5):
                 break
             now = time.time()
@@ -156,6 +158,22 @@ class Agent:
                                          f"— {int((now - avant) / 60)} min sans surveillance. Reprise en cours.")
             avant = now
         eveil.maintenir_eveil(False)
+
+    def _chien_de_garde(self):
+        """Un fil de plateforme bloqué (appel navigateur sans fin) ne lit plus rien sans le dire :
+        au-delà de 3 intervalles sans passage terminé, on prévient et on relance tout l'agent."""
+        maintenant = time.time()
+        for p, m in self.moteurs.items():
+            if self.pause.is_set():
+                return
+            limite = max(3 * m.intervalle, 900) + 1800      # marge pour les relances après échecs
+            if maintenant - m.derniere_activite > limite:
+                minutes = int((maintenant - m.derniere_activite) / 60)
+                log.error("[%s] bloqué depuis %d min : redémarrage complet de l'agent", p, minutes)
+                self.notif.envoyer(p, f"🔴🔴 🛑 {NOMS[p]} BLOQUÉ depuis {minutes} min sans lecture : "
+                                      f"je redémarre l'agent automatiquement.")
+                time.sleep(3)
+                os._exit(3)     # le superviseur (lancer_agent.ps1) relance l'agent 30 s plus tard
 
     def _verifier_reveil(self):
         """La tâche « AgentLogementReveil » sort le PC de veille et touche data/reveil.flag : lecture immédiate."""

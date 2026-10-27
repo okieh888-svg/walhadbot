@@ -45,6 +45,7 @@ class Moteur:
         self.alertes = alertes
         self.pause = pause or threading.Event()
         self.forcer = threading.Event()
+        self.derniere_activite = time.time()     # surveillé par le chien de garde (main.py)
         self.dormir = dormir
         self.log = logging.getLogger(f"moteur.{self.p}")
         self.connecte = False
@@ -209,6 +210,7 @@ class Moteur:
             debut = time.time()
             try:
                 self.passage()
+                self.derniere_activite = time.time()
                 if self.echecs >= ECHECS_AVANT_KO:
                     self.notif.envoyer(self.p, "✅ Agent rétabli, la surveillance reprend.")
                 self.echecs, self.ko_signale_a = 0, 0.0
@@ -217,6 +219,7 @@ class Moteur:
                 self._echec(e, fatal=True)
             except Exception as e:
                 self._echec(e)
+            self.derniere_activite = time.time()  # un passage terminé, même en échec : le fil n'est pas bloqué
             if une_fois:
                 break
             # intervalle ± 20 % (pas de rafales régulières), plus long après des échecs

@@ -141,17 +141,17 @@ class AdaptateurActionLogement(Adaptateur):
         identifiant, mdp = self.identifiants_ou_erreur("AL_EMAIL / AL_PASSWORD")
         self.log.info("connexion Action Logement…")
         self._refuser_cookies()
-        self.page.get_by_text("Se connecter", exact=True).first.click()
+        self.page.get_by_text("Se connecter", exact=True).first.click(force=True)
         champ = self.page.locator("input[type=email], #username").first
         champ.wait_for(timeout=30_000)
         if self.page.locator("iframe[src*='captcha'], [class*=captcha]").count():
             raise ConnexionImpossible("captcha sur la connexion Action Logement : connexion manuelle nécessaire")
         champ.fill(identifiant)
-        self.page.get_by_role("button", name=re.compile("Continuer")).first.click()
+        champ.press("Enter")      # fenêtre réduite : le bouton n'est jamais « stable », la touche Entrée suffit
         mot = self.page.locator("input[type=password]").first
         mot.wait_for(timeout=30_000)
         mot.fill(mdp)
-        self.page.get_by_role("button", name=re.compile("Continuer|Se connecter")).first.click()
+        mot.press("Enter")
         try:
             self.page.wait_for_url(lambda u: u.startswith(self.url_base + "/search")
                                    or u.startswith(self.url_base + "/demand"), timeout=30_000)
