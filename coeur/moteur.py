@@ -45,6 +45,7 @@ class Moteur:
         self.alertes = alertes
         self.pause = pause or threading.Event()
         self.forcer = threading.Event()
+        self.notif_hors_criteres = True
         self.derniere_activite = time.time()     # surveillé par le chien de garde (main.py)
         self.dormir = dormir
         self.log = logging.getLogger(f"moteur.{self.p}")
@@ -118,6 +119,7 @@ class Moteur:
         if not verdict:
             self.log.info("rejetée %s : %s — %s", o.id, verdict.raison, o.resume())
             self.m.marquer_vue(o, "rejetee")
+            self._notifier_hors_criteres(o, verdict)
             return
         try:
             self.a.enrichir(o)
@@ -129,6 +131,7 @@ class Moteur:
         if not verdict:
             self.log.info("rejetée après lecture de la fiche %s : %s", o.id, verdict.raison)
             self.m.marquer_vue(o, "rejetee")
+            self._notifier_hors_criteres(o, verdict)
             return
         self.log.info("CORRESPOND %s : %s — %s", o.id, verdict.raison, o.resume())
         prio = " ⭐ prioritaire" if verdict.prioritaire else ""
@@ -192,6 +195,14 @@ class Moteur:
             self.m.marquer_vue(o, "notifiee")
         elif decision.action == IGNORER:
             self.m.marquer_vue(o, "rejetee")
+
+    def _notifier_hors_criteres(self, o: Offre, verdict) -> None:
+        """Message simple (sans 🔴) pour toute nouvelle offre hors critères (option NOTIF_HORS_CRITERES)."""
+        if not self.notif_hors_criteres:
+            return
+        lien = f'\n<a href="{echapper(o.url)}">voir l\'offre</a>' if o.url else ""
+        self.notif.envoyer(self.p, f"ℹ️ Nouvelle offre hors critères — <i>{echapper(verdict.raison)}</i>\n"
+                                   f"{echapper(o.resume())}{lien}")
 
     def _sauver_motif(self, o: Offre, mo) -> None:
         d = self.a.dossier / "motifs"

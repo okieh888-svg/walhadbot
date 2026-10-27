@@ -116,7 +116,13 @@ def test_locannonces_plafond_850_et_93_800(tmp_path):
     m.passage()
     a.offres = [offre(1, "Paris", "75020", 860, p="locannonces"), offre(2, "Pantin", "93500", 820, p="locannonces")]
     m.passage()
-    assert a.envois == [] and len(n.textes()) == 1          # rejetées sans notification
+    assert a.envois == []
+    hors = [t for t in n.textes() if "hors critères" in t]
+    assert len(hors) == 2 and "850" in "".join(hors) and "🔴" not in "".join(hors)   # message simple, pas rouge
+    m.notif_hors_criteres = False
+    a.offres.append(offre(3, "Bobigny", "93000", 500, p="locannonces"))
+    m.passage()
+    assert len([t for t in n.textes() if "hors critères" in t]) == 2           # option désactivable
 
 
 def test_action_logement_candidate_puis_garde_la_derniere_place(tmp_path):

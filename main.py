@@ -66,6 +66,7 @@ class Agent:
                 intervalle=cfg.intervalles[p],
                 motifs=GenerateurMotif(cfg.ollama_url, cfg.ollama_modele, cfg.llm_timeout) if p == "locannonces" else None,
                 alertes=self.alertes if p == "action_logement" else None, pause=self.pause)
+            self.moteurs[p].notif_hors_criteres = cfg.notif_hors_criteres
 
     # ---------------------------------------------------------------- Telegram
     def statut(self) -> str:

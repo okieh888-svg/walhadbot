@@ -37,6 +37,7 @@ class Config:
     al_relance_s: int = 120
     al_relances_max: int = 10
     garder_eveil: bool = False
+    notif_hors_criteres: bool = True
     identifiants: dict[str, tuple[str, str]] = field(default_factory=dict)
 
     @classmethod
@@ -67,6 +68,7 @@ class Config:
             al_relance_s=int(e("AL_RELANCE_SECONDES", "120")),
             al_relances_max=int(e("AL_RELANCES_MAX", "10")),
             garder_eveil=_bool(e("GARDER_EVEIL"), False),
+            notif_hors_criteres=_bool(e("NOTIF_HORS_CRITERES"), True),
             identifiants={"aljt": (e("ALJT_EMAIL", ""), e("ALJT_PASSWORD", "")),
                           "locannonces": (e("PARIS_LOGIN", ""), e("PARIS_PASSWORD", "")),
                           "action_logement": (e("AL_EMAIL", ""), e("AL_PASSWORD", ""))},

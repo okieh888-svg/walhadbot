@@ -131,7 +131,9 @@ def test_action_logement_bout_en_bout(site, tmp_path):
                                 FauxAL.offre(4, "Bobigny", "93000", 600.0)]
         m.passage()
         assert site.posts("/demands/candidate") == []
-        assert "DRY-RUN" in n.textes()[-1] and "🔴🔴" in n.textes()[-1] and n.messages[-1]["photo"]
+        dry = [m for m in n.messages if "DRY-RUN" in m.get("texte", "")]
+        assert len(dry) == 1 and "🔴🔴" in dry[0]["texte"] and dry[0]["photo"]
+        assert any("hors critères" in t and "Bobigny" in t for t in n.textes())   # Bobigny : simple info
 
         # Production : 2/5 utilisées → 2 candidatures auto, puis la dernière place est gardée (alerte 🚨)
         m.dry_run = False
