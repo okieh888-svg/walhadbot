@@ -242,6 +242,10 @@ class Moteur:
         except Exception:
             pass
         now = time.time()
+        if isinstance(e, OSError) and e.errno == 28:      # disque plein : l'état ne peut plus être enregistré
+            fatal = True
+            msg = "💾 DISQUE C: PLEIN — l'agent ne peut plus enregistrer ce qu'il voit. Libère de la place " \
+                  "(Paramètres → Système → Stockage → Fichiers temporaires)."
         if (fatal or self.echecs >= ECHECS_AVANT_KO) and now - self.ko_signale_a > RAPPEL_KO_S:
             self.ko_signale_a = now
             self.notif.envoyer(self.p, f"🔴🔴 🛑 AGENT KO ({self.echecs} échecs) : {echapper(msg[:400])}"
