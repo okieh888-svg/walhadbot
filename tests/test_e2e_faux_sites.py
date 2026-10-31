@@ -148,3 +148,29 @@ def test_action_logement_bout_en_bout(site, tmp_path):
         assert alerte["boutons"] == [("✅ Vu", alerte["boutons"][0][1])] and alerte["photo"]
     finally:
         a.fermer()
+
+
+# ----------------------------------------------------------------------------- AL'IN
+@pytest.mark.parametrize("site", [__import__("faux_sites.serveur", fromlist=["FauxAlin"]).FauxAlin], indirect=True)
+def test_alin_bout_en_bout(site, tmp_path):
+    from faux_sites.serveur import FauxAlin
+    from plateformes import AdaptateurAlin
+    site.etat["offres"].append(FauxAlin.offre(1))
+    a, n, m = fabriquer(AdaptateurAlin, site, tmp_path, dry_run=True, api=site.url + "/api")
+    try:
+        m.passage()                                             # connexion par formulaire + ligne de base
+        assert "1 offres déjà en ligne ignorées" in n.textes()[0]
+
+        site.etat["offres"] += [FauxAlin.offre(2, "Pantin", "93500", 760.0), FauxAlin.offre(3, "Bobigny", "93000", 600.0)]
+        m.passage()                                             # DRY-RUN : rien envoyé
+        assert site.etat["candidatures"] == []
+        assert any("DRY-RUN" in t for t in n.textes()) and any("hors critères" in t and "Bobigny" in t for t in n.textes())
+
+        m.dry_run = False
+        site.etat["offres"] += [FauxAlin.offre(4, "Montreuil", "93100", 790.0), FauxAlin.offre(5, "Paris", "75011", 800.0)]
+        m.passage()                                             # une seule candidature, la suivante est notifiée
+        assert [c["housing_offer_id"] for c in site.etat["candidatures"]] == ["of4"]
+        textes = "\n".join(n.textes())
+        assert "CANDIDATURE ENVOYÉE" in textes and "déjà en cours" in textes
+    finally:
+        a.fermer()

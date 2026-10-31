@@ -45,6 +45,11 @@ class Moteur:
         self.alertes = alertes
         self.pause = pause or threading.Event()
         self.forcer = threading.Event()
+        self.criteres = None          # Criteres de la personne (None = critères historiques par défaut)
+        self.resolveur = None         # ResolveurCP (nom de commune → code postal)
+        self.limiteur = None          # threading.Semaphore partagé : nombre de navigateurs ouverts en même temps
+        self.fermer_apres = False     # fermer le navigateur après chaque passage (économie de mémoire)
+        self.etiquette = ""           # nom de la personne, pour le journal
         self.notif_hors_criteres = True
         self.derniere_activite = time.time()     # surveillé par le chien de garde (main.py)
         self.dormir = dormir
@@ -96,7 +101,7 @@ class Moteur:
             self.log.info("%d offres publiées avant le premier démarrage ignorées", info.anciennes_par_date)
 
         # meilleures d'abord : prioritaires (Pantin/Montreuil) puis loyer croissant
-        evaluees = [(o, classer(o), time.time()) for o in nouvelles]
+        evaluees = [(o, self.classer(o), time.time()) for o in nouvelles]
         evaluees.sort(key=lambda x: (not x[1].ok, not x[1].prioritaire, x[0].loyer or 9e9))
         for o, verdict, t_detect in evaluees:
             try:
@@ -109,6 +114,9 @@ class Moteur:
                 if not self.m.deja_vue(o.id):
                     self.m.marquer_vue(o)
         return nouvelles
+
+    def classer(self, o: Offre):
+        return self.criteres.classer(o, self.resolveur) if self.criteres else classer(o)
 
     def _candidature_active(self) -> bool:
         if self.actif_cache is None:
@@ -127,7 +135,7 @@ class Moteur:
             raise
         except Exception as e:
             self.log.warning("fiche de %s illisible : %s", o.id, e)
-        verdict = classer(o)          # la fiche peut préciser loyer/surface
+        verdict = self.classer(o)     # la fiche peut préciser loyer/surface
         if not verdict:
             self.log.info("rejetée après lecture de la fiche %s : %s", o.id, verdict.raison)
             self.m.marquer_vue(o, "rejetee")
@@ -220,7 +228,16 @@ class Moteur:
                 continue
             debut = time.time()
             try:
-                self.passage()
+                if self.limiteur:
+                    with self.limiteur:
+                        try:
+                            self.passage()
+                        finally:
+                            if self.fermer_apres:
+                                self.a.fermer()
+                                self.connecte = False
+                else:
+                    self.passage()
                 self.derniere_activite = time.time()
                 if self.echecs >= ECHECS_AVANT_KO:
                     self.notif.envoyer(self.p, "✅ Agent rétabli, la surveillance reprend.")

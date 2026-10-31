@@ -65,10 +65,22 @@ def politique_action_logement(offre: Offre, verdict: Verdict, candidature_active
     return Decision(CANDIDATER, verdict.raison)
 
 
+def politique_alin(offre: Offre, verdict: Verdict, candidature_active: bool) -> Decision:
+    """AL'in : une seule candidature à la fois (annulable avant transmission au bailleur)."""
+    if not verdict:
+        return Decision(IGNORER, verdict.raison)
+    if candidature_active:
+        return Decision(NOTIFIER, "candidature AL'in déjà en cours")
+    if offre.eligible is False:
+        return Decision(NOTIFIER, "le site indique que je ne suis pas éligible")
+    return Decision(CANDIDATER, verdict.raison)
+
+
 POLITIQUES = {
     "aljt": politique_aljt,
     "locannonces": politique_locannonces,
     "action_logement": politique_action_logement,
+    "alin": politique_alin,
 }
 
 

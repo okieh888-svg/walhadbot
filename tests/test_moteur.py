@@ -162,22 +162,28 @@ def test_agent_ko_sans_spam(tmp_path):
     assert len(ko) == 1                                    # un seul message malgré 6 échecs
 
 
-def test_chien_de_garde_relance_si_plateforme_bloquee(monkeypatch):
+def test_chien_de_garde_relance_si_plateforme_bloquee(monkeypatch, tmp_path):
     import time as _t
     import pytest
     import main
+    import coeur.personnes as P
     from coeur.config import Config
 
+    monkeypatch.setattr(P, "DATA", tmp_path)
+    annuaire = P.Annuaire(tmp_path / "personnes.json")
+    annuaire.enregistrer(P.Personne(id="a", nom="A", zones=[P.Zone(["75"], 900)],
+                                    plateformes={"aljt": P.ReglagePlateforme(actif=True)}))
+
     class A:
-        dry_run = True; plateformes = "aljt"; visible = False; debug = False
+        dry_run = True; plateformes = None; visible = False; debug = False; personne = None
         telegram_factice = True; sans_connexion_auto = True; once = True
 
-    ag = main.Agent(Config(intervalles={"aljt": 300}, production={}, identifiants={"aljt": ("", "")}), A())
+    ag = main.Agent(Config(intervalles={"aljt": 300}, production={}, identifiants={}), A(), annuaire=annuaire)
     monkeypatch.setattr(main.os, "_exit", lambda code: (_ for _ in ()).throw(SystemExit(code)))
     monkeypatch.setattr(main.time, "sleep", lambda s: None)
     ag._chien_de_garde()                                    # récent : rien
-    assert not ag.notif.textes()
-    ag.moteurs["aljt"].derniere_activite = _t.time() - 3 * 3600
+    assert not ag.notif_admin.textes()
+    ag.espaces["a"].moteurs["aljt"].derniere_activite = _t.time() - 3 * 3600
     with pytest.raises(SystemExit):
         ag._chien_de_garde()
-    assert "BLOQUÉ" in ag.notif.textes()[-1]
+    assert "BLOQUÉ" in ag.notif_admin.textes()[-1]

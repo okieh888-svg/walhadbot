@@ -16,7 +16,7 @@ import requests
 
 log = logging.getLogger("telegram")
 
-PREFIXES = {"aljt": "[ALJT]", "locannonces": "[Paris]", "action_logement": "[AL]", None: "[Agent]"}
+PREFIXES = {"aljt": "[ALJT]", "locannonces": "[Paris]", "action_logement": "[AL]", "alin": "[AL'in]", None: "[Agent]"}
 LIMITE_TEXTE = 4096
 LIMITE_LEGENDE = 1024
 
@@ -113,6 +113,58 @@ class Telegram(Notifieur):
         if self.actif and message_id:
             self._post("editMessageReplyMarkup", {"chat_id": self.chat_id, "message_id": message_id,
                                                   "reply_markup": json.dumps({"inline_keyboard": []})}, essais=1)
+
+    def _envoyer_a(self, chat_id: str, texte: str, html: bool = True) -> None:
+        for i in range(0, len(texte), LIMITE_TEXTE):
+            data = {"chat_id": chat_id, "text": texte[i:i + LIMITE_TEXTE]}
+            if html:
+                data["parse_mode"] = "HTML"
+            self._post("sendMessage", data)
+
+    def ecouter_tous(self, gestionnaire: Callable[[str, str, str], Optional[str]], arret: threading.Event) -> None:
+        """Bot partagé entre plusieurs personnes : chaque message est aiguillé selon son chat.
+
+        gestionnaire(chat_id, genre, contenu) avec genre ∈ {commande, callback, question}."""
+        if not self.token:
+            return
+        offset = None
+        while not arret.is_set():
+            try:
+                params = {"timeout": 25, "allowed_updates": json.dumps(["message", "callback_query"])}
+                if offset:
+                    params["offset"] = offset
+                r = self.session.get(f"{self.base}/getUpdates", params=params, timeout=35).json()
+                for u in r.get("result", []):
+                    offset = u["update_id"] + 1
+                    if "callback_query" in u:
+                        cq = u["callback_query"]
+                        chat = str(cq.get("message", {}).get("chat", {}).get("id"))
+                        rep = gestionnaire(chat, "callback", cq.get("data", "")) or ""
+                        self._post("answerCallbackQuery", {"callback_query_id": cq["id"], "text": rep}, essais=1)
+                        continue
+                    m = u.get("message") or {}
+                    chat, txt = str(m.get("chat", {}).get("id")), (m.get("text") or "").strip()
+                    if not txt:
+                        continue
+                    if txt.startswith("/"):
+                        rep = gestionnaire(chat, "commande", txt)
+                        if rep:
+                            self._envoyer_a(chat, rep)
+                    else:
+                        self._post("sendChatAction", {"chat_id": chat, "action": "typing"}, essais=1)
+
+                        def repondre(c=chat, t=txt):
+                            try:
+                                rep = gestionnaire(c, "question", t)
+                            except Exception as e:
+                                log.exception("question Telegram")
+                                rep = f"Je n'ai pas pu répondre ({type(e).__name__}). Essaie /statut."
+                            if rep:
+                                self._envoyer_a(c, rep, html=False)
+                        threading.Thread(target=repondre, daemon=True).start()
+            except Exception as e:   # réseau coupé, veille…
+                log.debug("getUpdates : %s", e)
+                arret.wait(5)
 
     def _repondre(self, sur_question: Callable[[str], str], txt: str) -> None:
         try:

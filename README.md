@@ -18,6 +18,25 @@ comprises) » ; LOC'Annonces : loyer + charges collectives ; AL : `totalRentAmou
 marquées vues et ne déclenchent jamais rien (« ▶️ Démarrage : X offres déjà en ligne ignorées »). Garde-fou : plus de
 `SEUIL_ANOMALIE` nouvelles offres d'un coup → marquées vues sans action + alerte.
 
+## Plusieurs personnes et interface web (depuis le 31/10/2026)
+
+L'agent surveille **plusieurs personnes**, chacune avec ses plateformes, ses critères et son Telegram.
+Tout se règle dans l'**interface web locale** : **http://127.0.0.1:8080** (accessible uniquement depuis ce PC,
+démarrée avec l'agent).
+
+- **Ajouter une personne** : nom, zones (codes postaux + loyer max charges comprises ; « 75 » = tout Paris),
+  pièces minimum, surface minimum, plateformes à surveiller (ALJT, LOC'Annonces, Action Logement, **AL'in**),
+  identifiant et mot de passe de chaque site, « Candidatures réelles » (sinon mode test), lettre de motivation.
+- **Mots de passe** : saisis par la personne elle-même, chiffrés avec la protection Windows (DPAPI) dans
+  `data/personnes/<id>/secrets/`, jamais affichés ni écrits en clair.
+- **Telegram** : la fiche donne un code ; la personne envoie `/lier CODE` au bot et reçoit ensuite SES
+  notifications ; `/statut`, `/pause`, `/reprise` et les questions libres ne concernent que son agent.
+  Tant qu'elle n'est pas reliée, ses notifications arrivent chez l'administrateur (TELEGRAM_CHAT_ID).
+- Toute modification enregistrée relance l'agent (≈ 10 s). Au plus 3 navigateurs ouverts en même temps.
+- **AL'in** : une seule candidature à la fois ; candidature auto si aucune n'est en cours (sinon 🏠).
+- Connexion manuelle (captcha, code) : `python main.py --connexion <personne>:<plateforme>`.
+- Migration de l'ancienne configuration : `python outils/migrer_vers_multi.py "Nom"` (déjà faite pour Ismail).
+
 ## Architecture
 
 ```

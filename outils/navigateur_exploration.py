@@ -3,7 +3,17 @@ avec CDP sur le port 9222, et journalise les réponses JSON/XHR dans
 data/<plateforme>/exploration_reseau.jsonl (brut, non commité).
 Usage : python outils/navigateur_exploration.py aljt|locannonces|action_logement
 """
-import json, sys, time
+import json, re, sys, time
+
+# Jamais de secret dans le journal d'exploration : mots de passe et jetons masqués
+SENSIBLE = re.compile(r'("(?:password|pass|pwd|mot_de_passe|token|access_token|refresh_token|id_token)"\s*:\s*)"[^"]*"', re.I)
+
+
+def masquer(t):
+    if not t:
+        return t
+    t = SENSIBLE.sub(r'"***"', t)
+    return re.sub(r'(password=)[^&"\s]+', r'***', t, flags=re.I)
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
@@ -11,6 +21,7 @@ URLS = {
     "aljt": "https://offres.passlogement.com/account",
     "locannonces": "https://teleservices.paris.fr/locannonces/",
     "action_logement": "https://logement-actionlogement.fr/",
+    "alin": "https://al-in.fr/",
 }
 p = sys.argv[1]
 racine = Path(__file__).resolve().parent.parent
@@ -32,8 +43,8 @@ def on_resp(r):
                 pass
         log.write(json.dumps({"t": time.time(), "m": r.request.method, "url": r.url,
                               "st": r.status, "ct": ct, "rt": rt,
-                              "post": (r.request.post_data or "")[:2000] if r.request.method != "GET" else None,
-                              "corps": corps}, ensure_ascii=False) + "\n")
+                              "post": masquer((r.request.post_data or "")[:2000]) if r.request.method != "GET" else None,
+                              "corps": masquer(corps)}, ensure_ascii=False) + "\n")
         log.flush()
     except Exception:
         pass

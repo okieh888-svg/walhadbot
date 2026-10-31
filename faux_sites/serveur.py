@@ -356,3 +356,73 @@ if __name__ == "__main__":
         print(k, s.url)
     while True:
         time.sleep(3600)
+
+
+# =============================================================================== AL'IN
+def _jwt(duree_s: int = 900) -> str:
+    import base64
+    import time as _t
+    b = lambda d: base64.urlsafe_b64encode(json.dumps(d).encode()).decode().rstrip("=")
+    return f"{b({'alg': 'none'})}.{b({'exp': int(_t.time()) + duree_s, 'n': _t.time()})}.sig"
+
+
+class FauxAlin(FauxSite):
+    def etat_initial(self):
+        return {"offres": [], "active": None, "candidatures": [], "jetons": set(), "nb": {}}
+
+    @staticmethod
+    def offre(i, ville="Montreuil", cp="93100", loyer=780.0, surface=48, typo="T2"):
+        return {"id": f"of{i}", "type": "housing_offers", "attributes": {
+            "typology": typo, "surface": surface, "rent_with_charges": loyer, "postal_code": cp, "district": ville,
+            "floor": 2, "residence_title": "Résidence test", "external_ref": f"REF{i}",
+            "date_publication_start": __import__("datetime").date.today().isoformat() + "T00:00:00.000+01:00",
+            "publication_end_date": "2026-12-31T00:00:00.000+01:00", "details": "Bel appartement",
+            "main_picture": {"full_size_absolute": ""}}}
+
+    def get(self, h):
+        u = urlparse(h.path)
+        if u.path.startswith("/api/"):
+            jeton = (h.headers.get("Authorization") or "").replace("Bearer ", "")
+            if jeton not in self.etat["jetons"]:
+                return h.json({"errors": [{"status": 401}]}, 401)
+            if u.path == "/api/dmo/housing_requests/last_request":
+                return h.json({"data": {"id": "req1", "attributes": {"als_id": "0001", "active_application_id": self.etat["active"],
+                                                                     "need_to_be_renewed": False}}})
+            if u.path == "/api/dmo/housing_requests/0001/eligible_offers":
+                q = parse_qs(u.query)
+                donnees = self.etat["offres"] if q.get("eligibility_type", [""])[0] == "seeked" else []
+                return h.json({"data": donnees, "meta": {"pagination": {"total_pages": 1}}})
+            if u.path == "/api/dmo/housing_offers/with_recount_eligible_requests_nb":
+                oid = parse_qs(u.query).get("housing_offer_ids[]", [""])[0]
+                return h.json({"data": [{"id": oid, "attributes": {"applicated_nb": self.etat["nb"].get(oid, 3)}}]})
+            return h.json({"errors": [{"status": 404}]}, 404)
+        connecte = h._cookie("alin") == "ok"
+        if connecte:
+            jeton = _jwt()
+            self.etat["jetons"].add(jeton)
+            return h.envoyer(200, f"""<html><body><h1>Bienvenue</h1><a>Mes candidatures</a>
+<script>localStorage.setItem('id_token', '{jeton}');</script></body></html>""")
+        return h.envoyer(200, """<html><head><title>AL'in</title></head><body>
+<button onclick="this.remove()">Refuser tous les cookies</button>
+<a onclick="document.getElementById('f').hidden=false">Se connecter</a>
+<form id="f" hidden method="POST" action="/login"><input type="email" name="login"><input type="password" name="password">
+<button type="submit">Valider</button></form></body></html>""")
+
+    def post(self, h, corps):
+        u = urlparse(h.path)
+        if u.path == "/login":
+            f = {k: v[0] for k, v in parse_qs(corps).items()}
+            if f.get("login") == IDENTIFIANT_TEST and f.get("password") == MDP_TEST:
+                return h.envoyer(302, "", entetes={"Location": "/", "Set-Cookie": "alin=ok; Path=/"})
+            return h.envoyer(200, "<html><body>Identifiant ou mot de passe incorrect</body></html>")
+        if u.path == "/api/dmo/housing_applications":
+            jeton = (h.headers.get("Authorization") or "").replace("Bearer ", "")
+            if jeton not in self.etat["jetons"]:
+                return h.json({"errors": [{"status": 401}]}, 401)
+            a = json.loads(corps)["data"]["attributes"]
+            if self.etat["active"]:
+                return h.json({"errors": [{"status": 422, "detail": "this housing_request has the maximum of housing_application"}]}, 422)
+            self.etat["active"] = f"app-{a['housing_offer_id']}"
+            self.etat["candidatures"].append(a)
+            return h.json({"data": {"id": self.etat["active"], "attributes": a}}, 201)
+        h.envoyer(404, "introuvable")
