@@ -215,9 +215,13 @@ class Agent:
         while True:
             secteur = eveil.sur_secteur()
             eveil.maintenir_eveil(secteur and self.cfg.garder_eveil)
-            if secteur_avant is not None and secteur != secteur_avant:
-                self.notif_admin.envoyer(None, "🔌 PC rebranché, surveillance continue." if secteur else
-                                         "🔴🔴 🔋 PC sur BATTERIE : il peut se mettre en veille. Rebranche-le.")
+            if secteur and secteur_avant is False:
+                self.notif_admin.envoyer(None, "🔌 PC rebranché, surveillance continue.")
+            if not secteur and time.time() - getattr(self, "_alerte_batterie", 0) > 1800:
+                # au démarrage, au débranchement, puis toutes les 30 min tant que le PC reste sur batterie
+                self._alerte_batterie = time.time()
+                self.notif_admin.envoyer(None, "🔴🔴 🔋 PC sur BATTERIE : il va se mettre en veille puis en veille "
+                                               "prolongée, et l'agent ne verra plus rien. Rebranche-le.")
             secteur_avant = secteur
             self.battement.battre()
             self._verifier_reveil()
