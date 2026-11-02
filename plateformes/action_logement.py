@@ -110,6 +110,8 @@ class AdaptateurActionLogement(Adaptateur):
             self.page.goto(self.url_base + "/search", wait_until="domcontentloaded")
         except Exception as e:     # réseau pas encore revenu (réveil de veille) : simple nouvel essai plus tard
             raise RuntimeError(f"site Action Logement injoignable ({type(e).__name__})")
+        if "authentification.actionlogement.fr" in self.page.url or "/u/login" in self.page.url:
+            raise SessionExpiree("redirigé vers la page de connexion")
         if not self.page.url.startswith(self.url_base):
             raise RuntimeError(f"site Action Logement non chargé ({self.page.url[:60]})")
         self._verifier_cloudflare()
@@ -141,8 +143,17 @@ class AdaptateurActionLogement(Adaptateur):
         identifiant, mdp = self.identifiants_ou_erreur("AL_EMAIL / AL_PASSWORD")
         self.log.info("connexion Action Logement…")
         self._refuser_cookies()
-        self.page.get_by_text("Se connecter", exact=True).first.click(force=True)
         champ = self.page.locator("input[type=email], #username").first
+        # Sans session, le site redirige souvent tout seul vers la page Auth0 « Bienvenue » :
+        # on ne clique « Se connecter » que si le champ e-mail n'est pas déjà là.
+        if not champ.count():
+            lien = self.page.get_by_text("Se connecter", exact=True)
+            for _ in range(10):
+                if champ.count() or lien.count():
+                    break
+                self.page.wait_for_timeout(1000)
+            if not champ.count() and lien.count():
+                lien.first.click(force=True)
         champ.wait_for(timeout=30_000)
         if self.page.locator("iframe[src*='captcha'], [class*=captcha]").count():
             raise ConnexionImpossible("captcha sur la connexion Action Logement : connexion manuelle nécessaire")

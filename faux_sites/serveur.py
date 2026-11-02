@@ -287,6 +287,9 @@ class FauxAL(FauxSite):
                 guid = u.path.rsplit("/", 1)[1]
                 return h.json({"code": "DEM53", "data": {"guid": guid} if guid in self.etat["candidatures"] else None})
             return h.envoyer(404, "introuvable")
+        if (u.path == "/search" or u.path.startswith("/search/detail/")) and not connecte:
+            # comme le vrai site : sans session, redirection directe vers la page de connexion Auth0
+            return h.envoyer(302, "", entetes={"Location": "/u/login"})
         if u.path == "/search" or u.path.startswith("/search/detail/"):
             corps = PAGE_AL_CONNECTE if connecte else PAGE_AL_DECO
             if u.path.startswith("/search/detail/"):
