@@ -404,7 +404,8 @@ class FauxAlin(FauxSite):
             jeton = _jwt()
             self.etat["jetons"].add(jeton)
             return h.envoyer(200, f"""<html><body><h1>Bienvenue</h1><a>Mes candidatures</a>
-<script>localStorage.setItem('id_token', '{jeton}');</script></body></html>""")
+<script>localStorage.setItem('id_token', 'jeton-IAM-refuse-par-l-api');
+sessionStorage.setItem('paw_id_token', '{jeton}');</script></body></html>""")
         return h.envoyer(200, """<html><head><title>AL'in</title></head><body>
 <button onclick="this.remove()">Refuser tous les cookies</button>
 <a style="display:none">Se connecter</a>

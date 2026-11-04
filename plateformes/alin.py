@@ -18,8 +18,12 @@ from .base import Adaptateur, ConnexionImpossible, ResultatCandidature, SessionE
 
 TYPES_ELIGIBILITE = ("seeked", "bordering", "other_from_department")
 
+# Comme le front (TokenService.getToken) : jeton d'API = paw_id_token (sessionStorage, sinon localStorage).
+# localStorage.id_token est le jeton IAM de connexion : refusé (401) par l'API des offres.
+JS_JETON = "() => sessionStorage.getItem('paw_id_token') || localStorage.getItem('paw_id_token')"
+
 JS_API = """async ([api, chemin, corps]) => {
-  const jeton = localStorage.getItem('id_token');
+  const jeton = sessionStorage.getItem('paw_id_token') || localStorage.getItem('paw_id_token');
   if (!jeton) return [401, 'pas de jeton'];
   const o = {method: corps === null ? 'GET' : 'POST',
              headers: {'Authorization': 'Bearer ' + jeton, 'Accept': 'application/json', 'Content-Type': 'application/json'}};
@@ -41,7 +45,7 @@ class AdaptateurAlin(Adaptateur):
     # ---------------------------------------------------------------- connexion
     def _jeton_valide(self) -> bool:
         try:
-            jeton = self.page.evaluate("() => localStorage.getItem('id_token')")
+            jeton = self.page.evaluate(JS_JETON)
         except Exception:
             return False
         if not jeton:
