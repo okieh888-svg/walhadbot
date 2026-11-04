@@ -147,3 +147,11 @@ def test_interface_refuse_sans_jeton_et_suppression_confirmee(client, donnees):
     c.post("/personne/dan/supprimer", data={"jeton": jeton, "confirmation": "Dan"})
     assert P.Annuaire(donnees / "personnes.json").obtenir("dan") is None
     assert not (donnees / "personnes" / "dan" / "secrets").exists()
+
+
+def test_admin_relie_a_sa_fiche_voit_tout_le_monde(agent):
+    agent.cfg.telegram_chat_id = "1"                          # l'admin est aussi « Ana »
+    s = agent.recevoir("1", "commande", "/statut")
+    assert "Ana" in s and "Bob" in s
+    agent.recevoir("1", "commande", "/pause")                # les autres commandes restent les siennes
+    assert agent.espaces["ana"].pause.is_set() and not agent.espaces["bob"].pause.is_set()

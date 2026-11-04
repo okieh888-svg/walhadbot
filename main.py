@@ -192,6 +192,10 @@ class Agent:
                 return "\n\n".join(e.statut() for e in self.espaces.values()) or "Aucune personne configurée."
             return ("Bonjour ! Ce bot sert à l'agent logement. Pour recevoir tes notifications, demande à "
                     "l'administrateur ton code, puis envoie « /lier CODE ».")
+        # l'administrateur (TELEGRAM_CHAT_ID) voit toutes les personnes dans /statut, même s'il a sa propre fiche
+        if (genre == "commande" and str(chat_id) == str(self.cfg.telegram_chat_id)
+                and contenu.split()[0].split("@")[0].lower() in ("/statut", "/status", "/tous")):
+            return "\n\n━━━━━━━━━━\n\n".join(e.statut() for e in self.espaces.values()) or "Aucune personne configurée."
         esp = self.espaces.get(personne.id)
         if not esp:
             return "Ton profil est inactif ou en cours de rechargement. Réessaie dans une minute."
