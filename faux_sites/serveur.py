@@ -407,8 +407,9 @@ class FauxAlin(FauxSite):
 <script>localStorage.setItem('id_token', '{jeton}');</script></body></html>""")
         return h.envoyer(200, """<html><head><title>AL'in</title></head><body>
 <button onclick="this.remove()">Refuser tous les cookies</button>
+<a style="display:none">Se connecter</a>
 <a onclick="document.getElementById('f').hidden=false">Se connecter</a>
-<form id="f" hidden method="POST" action="/login"><input type="email" name="login"><input type="password" name="password">
+<form id="f" hidden method="POST" action="/login"><input type="text" formcontrolname="mail" name="login"><input type="password" formcontrolname="password" name="password">
 <button type="submit">Valider</button></form></body></html>""")
 
     def post(self, h, corps):

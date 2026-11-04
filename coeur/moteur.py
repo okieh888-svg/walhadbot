@@ -232,6 +232,9 @@ class Moteur:
                     with self.limiteur:
                         try:
                             self.passage()
+                        except Exception:
+                            self._capture_echec = self.a.capture("ko")   # avant de fermer le navigateur
+                            raise
                         finally:
                             if self.fermer_apres:
                                 self.a.fermer()
@@ -267,7 +270,8 @@ class Moteur:
         self.log.error("passage en échec (%d) : %s", self.echecs, msg)
         self.log.debug(traceback.format_exc())
         self.m.noter_erreur(msg[:500])
-        capture = self.a.capture("ko")
+        capture = getattr(self, "_capture_echec", None) or self.a.capture("ko")
+        self._capture_echec = None
         try:
             self.a.fermer()
         except Exception:

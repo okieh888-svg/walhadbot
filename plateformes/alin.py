@@ -75,9 +75,15 @@ class AdaptateurAlin(Adaptateur):
         self.page.goto(self.url_base + "/#/deco", wait_until="domcontentloaded")
         self.page.wait_for_timeout(1500)
         self._refuser_cookies()
-        self.page.get_by_text("Se connecter", exact=True).first.click(force=True)
-        champ = self.page.locator("input[type=email], input[name*=login i], input[formcontrolname*=login i], "
-                                  "input[formcontrolname*=mail i], input[id*=mail i]").first
+        # Deux liens « Se connecter » : celui du menu mobile est caché ; on prend le visible.
+        lien = self.page.locator("text=Se connecter >> visible=true")
+        if lien.count():
+            lien.first.click()
+        else:
+            self.page.goto(self.url_base + "/#/connexion-demandeur", wait_until="domcontentloaded")
+        self._refuser_cookies()
+        champ = self.page.locator("input[formcontrolname=mail], input[type=email], input[name*=login i], "
+                                  "input[formcontrolname*=login i], input[id*=mail i]").first
         champ.wait_for(timeout=20_000)
         if self.page.locator("iframe[src*='captcha'], [class*=captcha]").count():
             raise ConnexionImpossible("captcha sur la connexion AL'in : connexion manuelle nécessaire")
