@@ -70,7 +70,8 @@ class Adaptateur(ABC):
         if self.canal:
             opts["channel"] = self.canal
         if not self.headless and self.reduire:
-            opts["args"] = ["--start-minimized"]
+            # réduite ET hors de l'écran : rien ne s'affiche ni ne vole le focus
+            opts["args"] = ["--start-minimized", "--window-position=-32000,-32000"]
         self.ctx = self._pw.chromium.launch_persistent_context(str(self.dossier / "navigateur"), **opts)
         self.ctx.set_default_timeout(30_000)
         self.page = self.ctx.pages[0] if self.ctx.pages else self.ctx.new_page()

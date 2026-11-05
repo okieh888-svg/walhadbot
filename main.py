@@ -90,7 +90,9 @@ class Espace:
             m.resolveur = agent.resolveur
             m.notif_hors_criteres = personne.notif_hors_criteres
             m.limiteur = agent.limiteur
-            m.fermer_apres = nb_total > NAVIGATEURS_SIMULTANES
+            # Les navigateurs invisibles sont fermés entre deux lectures (mémoire) ; les fenêtres visibles
+            # (Action Logement) restent ouvertes, sinon elles s'ouvrent et se ferment toutes les 5 min.
+            m.fermer_apres = nb_total > NAVIGATEURS_SIMULTANES and a.headless
             m.etiquette = personne.nom
             m.log = logging.getLogger(f"moteur.{personne.id}.{p}")
             self.moteurs[p] = m
