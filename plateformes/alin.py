@@ -22,6 +22,9 @@ TYPES_ELIGIBILITE = ("seeked", "bordering", "other_from_department")
 # localStorage.id_token est le jeton IAM de connexion : refusé (401) par l'API des offres.
 JS_JETON = "() => sessionStorage.getItem('paw_id_token') || localStorage.getItem('paw_id_token')"
 
+JS_OUBLIER_JETONS = """() => { for (const s of [sessionStorage, localStorage])
+  for (const k of ['paw_id_token', 'id_token', 'access_token', 'refresh_token']) s.removeItem(k); }"""
+
 JS_API = """async ([api, chemin, corps]) => {
   const jeton = sessionStorage.getItem('paw_id_token') || localStorage.getItem('paw_id_token');
   if (!jeton) return [401, 'pas de jeton'];
@@ -65,6 +68,17 @@ class AdaptateurAlin(Adaptateur):
         except Exception:
             pass
 
+    def _fermer_session_expiree(self) -> None:
+        """Fenêtre « Votre session a expirée ! — Ok » : on la ferme (elle redirige vers la connexion)."""
+        try:
+            if self.page.get_by_text(re.compile(r"session a expir", re.I)).count():
+                ok = self.page.get_by_role("button", name=re.compile(r"^\s*ok\s*$", re.I))
+                if ok.count() and ok.first.is_visible():
+                    ok.first.click()
+                    self.page.wait_for_timeout(1500)
+        except Exception:
+            pass
+
     def connexion(self) -> None:
         try:
             self.page.goto(self.url_base + "/#/HomeSalarie", wait_until="domcontentloaded")
@@ -76,8 +90,16 @@ class AdaptateurAlin(Adaptateur):
             return
         identifiant, mdp = self.identifiants_ou_erreur("identifiants AL'in")
         self.log.info("connexion AL'in…")
+        # Jetons expirés restés en mémoire → le site affiche « Votre session a expirée ! » par-dessus
+        # le formulaire et le champ e-mail n'apparaît jamais : on les efface avant de se reconnecter.
+        try:
+            self.page.evaluate(JS_OUBLIER_JETONS)
+        except Exception:
+            pass
         self.page.goto(self.url_base + "/#/deco", wait_until="domcontentloaded")
+        self.page.reload(wait_until="domcontentloaded")      # changement de # seul = pas de rechargement
         self.page.wait_for_timeout(1500)
+        self._fermer_session_expiree()
         self._refuser_cookies()
         # Deux liens « Se connecter » : celui du menu mobile est caché ; on prend le visible.
         lien = self.page.locator("text=Se connecter >> visible=true")
@@ -85,6 +107,8 @@ class AdaptateurAlin(Adaptateur):
             lien.first.click()
         else:
             self.page.goto(self.url_base + "/#/connexion-demandeur", wait_until="domcontentloaded")
+        self.page.wait_for_timeout(1000)
+        self._fermer_session_expiree()
         self._refuser_cookies()
         champ = self.page.locator("input[formcontrolname=mail], input[type=email], input[name*=login i], "
                                   "input[formcontrolname*=login i], input[id*=mail i]").first

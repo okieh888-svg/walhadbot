@@ -172,5 +172,12 @@ def test_alin_bout_en_bout(site, tmp_path):
         assert [c["housing_offer_id"] for c in site.etat["candidatures"]] == ["of4"]
         textes = "\n".join(n.textes())
         assert "CANDIDATURE ENVOYÉE" in textes and "déjà en cours" in textes
+
+        # Session expirée côté site, vieux jeton resté dans le navigateur (fenêtre « session expirée ») :
+        # l'agent doit se reconnecter quand même.
+        a.ctx.clear_cookies()
+        a.page.evaluate("() => sessionStorage.setItem('paw_id_token', 'x.eyJleHAiOjF9.y')")
+        a.connexion()
+        assert a._jeton_valide()
     finally:
         a.fermer()

@@ -409,7 +409,10 @@ sessionStorage.setItem('paw_id_token', '{jeton}');</script></body></html>""")
         return h.envoyer(200, """<html><head><title>AL'in</title></head><body>
 <button onclick="this.remove()">Refuser tous les cookies</button>
 <a style="display:none">Se connecter</a>
-<a onclick="document.getElementById('f').hidden=false">Se connecter</a>
+<a onclick="if(!document.getElementById('m'))document.getElementById('f').hidden=false">Se connecter</a>
+<script>if (sessionStorage.getItem('paw_id_token')) document.write(
+ '<div id="m" style="position:fixed;inset:0;background:#000a"><p>Votre session a expirée!</p>'
+ + '<button onclick="document.getElementById(\\'m\\').remove()">Ok</button></div>');</script>
 <form id="f" hidden method="POST" action="/login"><input type="text" formcontrolname="mail" name="login"><input type="password" formcontrolname="password" name="password">
 <button type="submit">Valider</button></form></body></html>""")
 
