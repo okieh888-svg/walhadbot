@@ -12,7 +12,7 @@ import traceback
 from datetime import datetime
 from typing import Callable, Optional
 
-from plateformes.base import Adaptateur, ConnexionImpossible, SessionExpiree
+from plateformes.base import Adaptateur, ConnexionImpossible, IdentifiantsRefuses, SessionExpiree
 
 from .alertes import GestionAlertes
 from .criteres import classer
@@ -49,6 +49,7 @@ class Moteur:
         self.resolveur = None         # ResolveurCP (nom de commune → code postal)
         self.limiteur = None          # threading.Semaphore partagé : nombre de navigateurs ouverts en même temps
         self.fermer_apres = False     # fermer le navigateur après chaque passage (économie de mémoire)
+        self.arrete = False           # arrêté volontairement (identifiants refusés) : ignoré par le chien de garde
         self.etiquette = ""           # nom de la personne, pour le journal
         self.notif_hors_criteres = True
         self.derniere_activite = time.time()     # surveillé par le chien de garde (main.py)
@@ -246,6 +247,21 @@ class Moteur:
                     self.notif.envoyer(self.p, "✅ Agent rétabli, la surveillance reprend.")
                 self.echecs, self.ko_signale_a = 0, 0.0
                 self.m.noter_erreur(None)
+            except IdentifiantsRefuses as e:
+                # Pas de nouvel essai (le site bloque le compte après quelques échecs) : on attend que
+                # les identifiants soient modifiés dans l'interface (l'agent redémarre alors tout seul).
+                self._echec(e, fatal=True)
+                self.notif.envoyer(self.p, "⛔ Surveillance arrêtée pour ce compte : identifiant ou mot de passe "
+                                           "refusé. Corrige-les dans l'interface (http://127.0.0.1:8080), "
+                                           "l'agent reprendra tout seul. Aucun nouvel essai d'ici là.")
+                self.log.error("identifiants refusés : moteur arrêté jusqu'à modification des identifiants")
+                self.arrete = True
+                try:
+                    self.a.noter_identifiants_refuses()     # aussi après un redémarrage de l'agent
+                except Exception:
+                    pass
+                self.a.fermer()
+                return
             except ConnexionImpossible as e:
                 self._echec(e, fatal=True)
             except Exception as e:

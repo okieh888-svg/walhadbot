@@ -21,6 +21,11 @@ class ConnexionImpossible(Exception):
     """Captcha, double authentification, identifiants absents… intervention humaine requise."""
 
 
+class IdentifiantsRefuses(ConnexionImpossible):
+    """Le site a refusé l'identifiant / le mot de passe : ne JAMAIS réessayer (blocage du compte
+    après quelques échecs). Le moteur s'arrête jusqu'à ce que les identifiants soient modifiés."""
+
+
 @dataclass
 class ResultatCandidature:
     ok: bool
@@ -57,7 +62,34 @@ class Adaptateur(ABC):
         identifiant, mdp = self.identifiants
         if not (identifiant and mdp):
             raise ConnexionImpossible(f"{variables} absents de .env (ou lance : python main.py --connexion {self.nom})")
+        marque = self.dossier / "identifiants_refuses"
+        if marque.exists():
+            if self._empreinte(identifiant, mdp, marque) == marque.read_text(encoding="ascii").strip():
+                raise IdentifiantsRefuses(f"{self.nom} : ces identifiants ont déjà été refusés par le site, "
+                                          "aucun nouvel essai tant qu'ils ne sont pas modifiés")
+            marque.unlink(missing_ok=True)                  # identifiants modifiés : on réessaie
         return identifiant, mdp
+
+    @staticmethod
+    def _empreinte(identifiant: str, mdp: str, marque: Optional[Path] = None, sel: Optional[bytes] = None) -> str:
+        """Empreinte salée et lente (PBKDF2) : permet de reconnaître un mot de passe déjà refusé
+        sans jamais l'écrire sur le disque."""
+        import hashlib
+        import os
+        if sel is None:
+            try:
+                sel = bytes.fromhex(marque.read_text(encoding="ascii").split(":")[0]) if marque else None
+            except Exception:
+                sel = None
+        sel = sel or os.urandom(16)
+        h = hashlib.pbkdf2_hmac("sha256", f"{identifiant}\0{mdp}".encode(), sel, 200_000).hex()
+        return f"{sel.hex()}:{h}"
+
+    def noter_identifiants_refuses(self) -> None:
+        identifiant, mdp = self.identifiants
+        if identifiant and mdp:
+            (self.dossier / "identifiants_refuses").write_text(self._empreinte(identifiant, mdp, sel=None),
+                                                                encoding="ascii")
 
     # ---- cycle de vie du navigateur (un par plateforme, profil persistant) -------
     def demarrer(self) -> None:

@@ -181,3 +181,30 @@ def test_alin_bout_en_bout(site, tmp_path):
         assert a._jeton_valide()
     finally:
         a.fermer()
+
+
+@pytest.mark.parametrize("site", [__import__("faux_sites.serveur", fromlist=["FauxAlin"]).FauxAlin], indirect=True)
+def test_alin_mot_de_passe_refuse_un_seul_essai(site, tmp_path):
+    """Mot de passe refusé : un seul essai, moteur arrêté, pas de nouvel essai même après redémarrage,
+    reprise dès que le mot de passe est modifié (le site bloque le compte après 5 échecs)."""
+    import threading
+    from plateformes import AdaptateurAlin
+    a, n, m = fabriquer(AdaptateurAlin, site, tmp_path, dry_run=True, api=site.url + "/api")
+    a.identifiants = (IDENTIFIANT_TEST, "mauvais")
+    m.forcer.set()
+    m.boucle(threading.Event())                               # revient tout seul : moteur arrêté
+    assert m.arrete and site.etat["essais"] == 1
+    assert "mauvais" not in (a.dossier / "identifiants_refuses").read_text()
+    assert any("Surveillance arrêtée" in t for t in n.textes())
+
+    a2, n2, m2 = fabriquer(AdaptateurAlin, site, tmp_path, dry_run=True, api=site.url + "/api")
+    a2.identifiants = (IDENTIFIANT_TEST, "mauvais")           # « redémarrage » avec le même mot de passe
+    m2.boucle(threading.Event())
+    assert m2.arrete and site.etat["essais"] == 1             # aucun essai de plus
+
+    a3, n3, m3 = fabriquer(AdaptateurAlin, site, tmp_path, dry_run=True, api=site.url + "/api")
+    try:                                                      # mot de passe corrigé : reprise
+        m3.passage()
+        assert site.etat["essais"] == 2 and not (a3.dossier / "identifiants_refuses").exists()
+    finally:
+        a3.fermer()

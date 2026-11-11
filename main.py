@@ -253,7 +253,7 @@ class Agent:
     def _chien_de_garde(self):
         maintenant = time.time()
         for esp, p, m in self.tous_moteurs():
-            if esp.pause.is_set():
+            if esp.pause.is_set() or m.arrete:      # arrêté exprès (identifiants refusés) : pas un blocage
                 continue
             # avec le limiteur, une lecture peut attendre son tour : marge proportionnelle au nombre de moteurs
             limite = max(3 * m.intervalle, 900) + 1800 + 60 * sum(1 for _ in self.tous_moteurs())

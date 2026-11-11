@@ -14,7 +14,7 @@ from typing import Optional
 
 from coeur.offre import Offre
 
-from .base import Adaptateur, ConnexionImpossible, ResultatCandidature, SessionExpiree, _num
+from .base import Adaptateur, ConnexionImpossible, IdentifiantsRefuses, ResultatCandidature, SessionExpiree, _num
 
 TYPES_ELIGIBILITE = ("seeked", "bordering", "other_from_department")
 
@@ -125,7 +125,7 @@ class AdaptateurAlin(Adaptateur):
                 self.log.info("connecté à AL'in")
                 return
         if self.page.get_by_text(re.compile(r"incorrect|invalide|erron", re.I)).count():
-            raise ConnexionImpossible(f"AL'in : identifiants refusés (capture : {self.capture('connexion-echec')})")
+            raise IdentifiantsRefuses(f"AL'in : identifiants refusés (capture : {self.capture('connexion-echec')})")
         raise RuntimeError(f"connexion AL'in sans réponse, nouvel essai plus tard ({self.capture('connexion-echec')})")
 
     # ---------------------------------------------------------------- API

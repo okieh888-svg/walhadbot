@@ -371,7 +371,7 @@ def _jwt(duree_s: int = 900) -> str:
 
 class FauxAlin(FauxSite):
     def etat_initial(self):
-        return {"offres": [], "active": None, "candidatures": [], "jetons": set(), "nb": {}}
+        return {"offres": [], "active": None, "candidatures": [], "jetons": set(), "nb": {}, "essais": 0}
 
     @staticmethod
     def offre(i, ville="Montreuil", cp="93100", loyer=780.0, surface=48, typo="T2"):
@@ -420,6 +420,7 @@ sessionStorage.setItem('paw_id_token', '{jeton}');</script></body></html>""")
         u = urlparse(h.path)
         if u.path == "/login":
             f = {k: v[0] for k, v in parse_qs(corps).items()}
+            self.etat["essais"] += 1
             if f.get("login") == IDENTIFIANT_TEST and f.get("password") == MDP_TEST:
                 return h.envoyer(302, "", entetes={"Location": "/", "Set-Cookie": "alin=ok; Path=/"})
             return h.envoyer(200, "<html><body>Identifiant ou mot de passe incorrect</body></html>")

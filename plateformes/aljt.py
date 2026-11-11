@@ -14,7 +14,7 @@ from typing import Optional
 from coeur.criteres import normaliser
 from coeur.offre import Offre
 
-from .base import (Adaptateur, ConnexionImpossible, ResultatCandidature, SessionExpiree, _num,
+from .base import (Adaptateur, ConnexionImpossible, IdentifiantsRefuses, ResultatCandidature, SessionExpiree, _num,
                    listes_candidates, offre_depuis_dict)
 
 TRI_OFFRES = json.dumps([{"property": "dateCreated", "direction": "DESC"}])
@@ -87,7 +87,7 @@ class AdaptateurALJT(Adaptateur):
         except Exception:
             capture = self.capture("connexion-echec")
             if self.page.get_by_text(re.compile("Identifiants incorrects", re.I)).count():
-                raise ConnexionImpossible(f"ALJT : identifiants incorrects (capture : {capture})")
+                raise IdentifiantsRefuses(f"ALJT : identifiants incorrects (capture : {capture})")
             # sinon : réseau absent (réveil de veille), site lent… → simple nouvel essai au passage suivant
             raise RuntimeError(f"connexion ALJT sans réponse, nouvel essai plus tard (capture : {capture})")
         if not self._session_valide():
