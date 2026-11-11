@@ -232,6 +232,8 @@ def creer_app(agent=None, annuaire: Annuaire | None = None) -> Flask:
             mdp = f.get(f"{code}_mdp") or ""
             if mdp:
                 p.coffre.enregistrer(code, mdp)
+                # mot de passe retapé (même identique) : l'agent a de nouveau droit à un essai
+                (p.dossier / code / "identifiants_refuses").unlink(missing_ok=True)
             elif f.get(f"{code}_effacer"):
                 p.coffre.effacer(code)
         p.dossier.mkdir(parents=True, exist_ok=True)
